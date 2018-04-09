@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF03A9F4</color>
+    <color name="colorPrimaryDark">#FF03A9F4</color>
+    <color name="colorAccent">#e02c96ff</color>
+
+    <color name="white">#ffffff</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="trans">#14000000</color>
+    <color name="trans_all">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="black_trans">#C0000000</color>
+    <color name="gray">#5e5d5d</color>
+    <color name="gray_light">#979797</color>
+    <color name="silver_white">#e5e5e5</color>
+    <color name="green">#24ff00</color>
+
+    <color name="bg_loop">#545454</color>
+    <color name="bg_loop_dark">#848484</color>
+
+    <color name="cl_default">#424242</color>
+    <color name="cl_error">#ffffff</color>
+
+
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="result_view">#B0000000</color>
+    <color name="viewfinder_frame">#90FFFFFF</color>
+    <color name="result_point_color">#C0FFFF00</color>
+    <color name="laser_color">#0F0</color>
+    <color name="corner_color">#00FF00</color>
+</resources>

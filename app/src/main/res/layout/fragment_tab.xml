@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <com.fuj.enjoytv.activity.tv_play.VerticalTabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/silver_white"
+            android:visibility="visible"
+            app:indicator_color="@color/colorPrimary"
+            app:indicator_gravity="left"
+            app:tab_height="40dp"
+            app:tab_mode="scrollable" />
+        <com.fuj.enjoytv.activity.tv_play.VerticalViewPager
+            android:id="@+id/verticalviewpager"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"/>
+    </LinearLayout>
+</LinearLayout>

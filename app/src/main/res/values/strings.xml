@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">畅享TV</string>
+
+    <!-- tab -->
+    <string name="tab_tv">首页</string>
+    <string name="tab_chat">消息</string>
+    <string name="tab_now">直播</string>
+    <string name="tab_user">个人</string>
+
+    <!-- dialog -->
+    <string name="dialog_loadingIV">加载图</string>
+
+    <!-- user view -->
+    <string name="user_nameTV">用户名</string>
+
+    <!-- title -->
+    <string name="title_chat">消息</string>
+
+    <!-- nowplay -->
+    <string name="now_play_send">发送</string>
+    <string name="now_play_hint">快来与主播互动吧</string>
+
+    <!-- other -->
+    <string name="giraffe_player_url_empty">请指定播放视频的地址</string>
+    <string name="small_problem">出现了点小问题,稍后重试</string>
+    <string name="can_not_play">不能播放此视频</string>
+    <string name="not_support">播放器不支持此设备</string>
+
+    <!-- permission -->
+    <string name="permission_get_accounts_hint">没有访问账户权限</string>
+    <string name="permission_read_phone_hint">没有电话权限</string>
+    <string name="permission_call_phone_hint">没有拨打电话权限</string>
+    <string name="permission_camera_hint">没有拍照权限</string>
+    <string name="permission_access_fine_location_hint">没有定位权限</string>
+    <string name="permission_access_coarse_location_hint">没有定位权限</string>
+    <string name="permission_read_external_hint">没有读取存储卡权限</string>
+    <string name="permission_white_external_hint">没有读取存储卡权限</string>
+    <string name="permission_recode_audio_hint">没有麦克风权限</string>
+    <string name="permission_wake_lock">没有唤醒权限</string>
+
+    <!-- toast -->
+    <string name="toast_connfail">连接失败,请检查网络是否畅通</string>
+    <string name="toast_loading">加载中</string>
+    <string name="toast_loading_failed">加载失败</string>
+    <string name="toast_loading_unfinished">未加载完成</string>
+    <string name="toast_upload_fail">上传失败</string>
+    <string name="toast_upload_success">上传成功</string>
+    <string name="toast_data_less">数据量太少</string>
+    <string name="toast_location_fail">定位失败,请检查GPS定位是否开启</string>
+</resources>

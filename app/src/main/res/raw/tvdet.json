@@ -1,0 +1,17 @@
+{
+  "result" : "true",
+  "datas" : [
+    {"thum" : "ic_thum", "title" : "CCTV-1 综合", "content" : "加油向未来2017-第八期完整版重播", "startTime" : "15:20", "url" : "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8"},
+    {"thum" : "ic_thum2", "title" : "CCTV-2 财经", "content" : "国庆特辑-生财有道3", "startTime" : "15:21", "url" : "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8"},
+    {"thum" : "ic_thum3", "title" : "CCTV-3 综艺", "content" : "综艺喜乐汇-2017-1089", "startTime" : "15:22", "url" : "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8"},
+    {"thum" : "ic_thum4", "title" : "CCTV-4 国际", "content" : "红色摇篮7/29", "startTime" : "15:23", "url" : "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8"},
+    {"thum" : "ic_thum5", "title" : "CCTV-5 体育", "content" : "2017年中国网球公开赛-女单第一轮 哈勒普VS里斯克", "startTime" : "15:24", "url" : "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8"},
+    {"thum" : "ic_thum6", "title" : "CCTV-6 电影", "content" : "怀旧电影-龙蛇争霸", "startTime" : "15:25", "url" : "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8"},
+    {"thum" : "ic_thum7", "title" : "CCTV-7 军事农业", "content" : "致富经", "startTime" : "15:26", "url" : "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8"},
+    {"thum" : "ic_thum8", "title" : "CCTV-8 电视剧", "content" : "春天的十七个瞬间(俄罗斯) 第1集", "startTime" : "15:27", "url" : "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8"},
+    {"thum" : "ic_thum9", "title" : "CCTV-9 纪录", "content" : "野性的终结", "startTime" : "15:28", "url" : "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8"},
+    {"thum" : "ic_thum10", "title" : "CCTV-10 科教", "content" : "科技之光-乡村去污记", "startTime" : "15:29", "url" : "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8"},
+    {"thum" : "ic_thum11", "title" : "CCTV-11 戏曲", "content" : "京剧-霸王别姬", "startTime" : "15:30", "url" : "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8"},
+    {"thum" : "ic_thum12", "title" : "CCTV-12 社会与法", "content" : "热线关注", "startTime" : "15:31", "url" : "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8"}
+  ]
+}

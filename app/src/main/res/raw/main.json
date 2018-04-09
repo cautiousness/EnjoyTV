@@ -1,0 +1,39 @@
+{
+  "result" : "true",
+  "datas" : {
+    "loop": [
+      {"pic" : "test1", "title" : "机智法医断案如神", "url" : ""},
+      {"pic" : "test2", "title" : "汪伪政权的特工行动", "url" : ""},
+      {"pic" : "test3", "title" : "民国爱情玄幻", "url" : ""},
+      {"pic" : "test4", "title" : "梅长苏本远在江湖,却名动帝辇", "url" : ""},
+      {"pic" : "test5", "title" : "礼崩乐坏、群雄逐鹿的春秋末年", "url" : ""},
+      {"pic" : "test6", "title" : "塔克拉玛干沙漠中的精绝古城", "url" : ""}
+    ],
+    "navi" : [
+      {"pic" : "ic_channel_sport", "title" : "卫视", "url" : ""},
+      {"pic" : "ic_channel_tv", "title" : "电视剧", "url" : ""},
+      {"pic" : "ic_channel_film", "title" : "电影", "url" : ""},
+      {"pic" : "ic_channel_cinema", "title" : "综艺", "url" : ""},
+      {"pic" : "ic_channel_caton", "title" : "动漫", "url" : ""},
+      {"pic" : "ic_channel_vip", "title" : "影视VIP", "url" : ""},
+      {"pic" : "ic_channel_hot", "title" : "热点", "url" : ""},
+      {"pic" : "ic_channel_rich", "title" : "财富", "url" : ""},
+      {"pic" : "ic_channel_beauti", "title" : "美女", "url" : ""},
+      {"pic" : "ic_channel_3d", "title" : "购物", "url" : ""}
+    ],
+    "gif" : [
+      {"pic" : "gif1", "title" : "震惊", "url" : ""},
+      {"pic" : "gif13", "title" : "震惊+1", "url" : ""},
+      {"pic" : "gif3", "title" : "震惊+2", "url" : ""},
+      {"pic" : "gif4", "title" : "震惊+3", "url" : ""},
+      {"pic" : "gif7", "title" : "震惊+4", "url" : ""},
+      {"pic" : "gif8", "title" : "震惊+5", "url" : ""},
+      {"pic" : "gif9", "title" : "震惊+6", "url" : ""},
+      {"pic" : "gif10", "title" : "震惊+7", "url" : ""},
+      {"pic" : "gif11", "title" : "震惊+8", "url" : ""},
+      {"pic" : "gif12", "title" : "震惊+9", "url" : ""},
+      {"pic" : "gif15", "title" : "震惊+10", "url" : ""},
+      {"pic" : "gif14", "title" : "震惊+11", "url" : ""}
+    ]
+  }
+}

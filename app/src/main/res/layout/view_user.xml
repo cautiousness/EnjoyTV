@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:roundImageView="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/silver_white">
+    <RelativeLayout
+        android:id="@+id/user_avatarRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@mipmap/bg_user">
+        <com.fuj.enjoytv.widget.comm.RoundImageView
+            android:id="@+id/user_avatarIV"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ic_user_avatar"
+            roundImageView:type="circle" />
+        <TextView
+            android:id="@+id/user_nameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/user_avatarIV"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:padding="5dp"
+            android:background="@drawable/bg_subscribe_normal" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/user_loc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:background="@color/white"
+        android:text="虚拟定位"
+        android:gravity="center_vertical"
+        android:textColor="@color/gray"
+        android:layout_below="@id/user_avatarRL"
+        android:textSize="16sp" />
+    <TextView
+        android:id="@+id/user_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:layout_marginTop="1px"
+        android:background="@color/white"
+        android:text="自拍视频"
+        android:gravity="center_vertical"
+        android:textColor="@color/gray"
+        android:layout_below="@id/user_loc"
+        android:textSize="16sp" />
+    <TextView
+        android:id="@+id/user_qrcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:layout_marginTop="1px"
+        android:background="@color/white"
+        android:text="二维码"
+        android:gravity="center_vertical"
+        android:textColor="@color/gray"
+        android:layout_below="@id/user_video"
+        android:textSize="16sp" />
+</RelativeLayout>

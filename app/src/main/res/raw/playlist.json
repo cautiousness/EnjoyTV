@@ -1,0 +1,110 @@
+{
+  "result" : "true",
+  "datas" : [
+    {
+      "day" : "周日",
+      "playlist" : [
+        {"time" : "10:10", "title" : "铁血将军第03集", "status" : 0},
+        {"time" : "11:10", "title" : "新闻30分", "status" : 1},
+        {"time" : "12:10", "title" : "今日说法", "status" : 0},
+        {"time" : "13:10", "title" : "好大一个家第08集", "status" : 0},
+        {"time" : "14:10", "title" : "好大一个家第09集", "status" : 0},
+        {"time" : "15:10", "title" : "好大一个家第10集", "status" : 0},
+        {"time" : "16:10", "title" : "好大一个家第11集", "status" : 0},
+        {"time" : "17:10", "title" : "第五批中国梦歌曲(30首)", "status" : 0},
+        {"time" : "18:10", "title" : "第一动画乐园", "status" : 0},
+        {"time" : "19:10", "title" : "新闻联播", "status" : 0},
+        {"time" : "19:40", "title" : "天气预报", "status" : 1}
+      ]},
+    {
+      "day" : "周一",
+      "playlist" : [
+        {"time" : "10:11", "title" : "铁血将军第04集", "status" : 0},
+        {"time" : "11:11", "title" : "新闻30分", "status" : 1},
+        {"time" : "12:11", "title" : "今日说法", "status" : 0},
+        {"time" : "13:11", "title" : "好大一个家第12集", "status" : 0},
+        {"time" : "14:11", "title" : "好大一个家第13集", "status" : 0},
+        {"time" : "15:11", "title" : "好大一个家第14集", "status" : 0},
+        {"time" : "16:11", "title" : "好大一个家第15集", "status" : 0},
+        {"time" : "17:11", "title" : "第五批中国梦歌曲(30首)", "status" : 0},
+        {"time" : "18:11", "title" : "第一动画乐园", "status" : 0},
+        {"time" : "19:11", "title" : "新闻联播", "status" : 0},
+        {"time" : "19:41", "title" : "天气预报", "status" : 1}
+      ]},
+    {
+      "day" : "周二",
+      "playlist" : [
+        {"time" : "10:12", "title" : "铁血将军第05集", "status" : 0},
+        {"time" : "11:12", "title" : "新闻30分", "status" : 1},
+        {"time" : "12:12", "title" : "今日说法", "status" : 0},
+        {"time" : "13:12", "title" : "好大一个家第16集", "status" : 0},
+        {"time" : "14:12", "title" : "好大一个家第17集", "status" : 0},
+        {"time" : "15:12", "title" : "好大一个家第18集", "status" : 0},
+        {"time" : "16:12", "title" : "好大一个家第19集", "status" : 0},
+        {"time" : "17:12", "title" : "第五批中国梦歌曲(30首)", "status" : 0},
+        {"time" : "18:12", "title" : "第一动画乐园", "status" : 0},
+        {"time" : "19:12", "title" : "新闻联播", "status" : 0},
+        {"time" : "19:42", "title" : "天气预报", "status" : 1}
+      ]},
+    {
+      "day" : "周三",
+      "playlist" : [
+        {"time" : "10:13", "title" : "铁血将军第06集", "status" : 0},
+        {"time" : "11:13", "title" : "新闻30分", "status" : 1},
+        {"time" : "12:13", "title" : "今日说法", "status" : 0},
+        {"time" : "13:13", "title" : "好大一个家第20集", "status" : 0},
+        {"time" : "14:13", "title" : "好大一个家第21集", "status" : 0},
+        {"time" : "15:13", "title" : "好大一个家第22集", "status" : 0},
+        {"time" : "16:13", "title" : "好大一个家第23集", "status" : 0},
+        {"time" : "17:13", "title" : "第五批中国梦歌曲(30首)", "status" : 0},
+        {"time" : "18:13", "title" : "第一动画乐园", "status" : 0},
+        {"time" : "19:13", "title" : "新闻联播", "status" : 0},
+        {"time" : "19:43", "title" : "天气预报", "status" : 1}
+      ]},
+    {
+      "day" : "周四",
+      "playlist" : [
+        {"time" : "10:14", "title" : "铁血将军第07集", "status" : 0},
+        {"time" : "11:14", "title" : "新闻30分", "status" : 1},
+        {"time" : "12:14", "title" : "今日说法", "status" : 0},
+        {"time" : "13:14", "title" : "好大一个家第24集", "status" : 0},
+        {"time" : "14:14", "title" : "好大一个家第25集", "status" : 0},
+        {"time" : "15:14", "title" : "好大一个家第26集", "status" : 0},
+        {"time" : "16:14", "title" : "好大一个家第27集", "status" : 0},
+        {"time" : "17:14", "title" : "第五批中国梦歌曲(30首)", "status" : 0},
+        {"time" : "18:14", "title" : "第一动画乐园", "status" : 0},
+        {"time" : "19:14", "title" : "新闻联播", "status" : 0},
+        {"time" : "19:44", "title" : "天气预报", "status" : 1}
+      ]},
+    {
+      "day" : "周五",
+      "playlist" : [
+        {"time" : "10:15", "title" : "铁血将军第08集", "status" : 0},
+        {"time" : "11:15", "title" : "新闻30分", "status" : 1},
+        {"time" : "12:15", "title" : "今日说法", "status" : 0},
+        {"time" : "13:15", "title" : "好大一个家第28集", "status" : 0},
+        {"time" : "14:15", "title" : "好大一个家第29集", "status" : 0},
+        {"time" : "15:15", "title" : "好大一个家第30集", "status" : 0},
+        {"time" : "16:15", "title" : "好大一个家第31集", "status" : 0},
+        {"time" : "17:15", "title" : "第五批中国梦歌曲(30首)", "status" : 0},
+        {"time" : "18:15", "title" : "第一动画乐园", "status" : 0},
+        {"time" : "19:15", "title" : "新闻联播", "status" : 0},
+        {"time" : "19:45", "title" : "天气预报", "status" : 1}
+      ]},
+    {
+      "day" : "周六",
+      "playlist" : [
+        {"time" : "10:16", "title" : "铁血将军第09集", "status" : 0},
+        {"time" : "11:16", "title" : "新闻30分", "status" : 1},
+        {"time" : "12:16", "title" : "今日说法", "status" : 0},
+        {"time" : "13:16", "title" : "好大一个家第32集", "status" : 0},
+        {"time" : "14:16", "title" : "好大一个家第33集", "status" : 0},
+        {"time" : "15:16", "title" : "好大一个家第34集", "status" : 0},
+        {"time" : "16:16", "title" : "好大一个家第35集", "status" : 0},
+        {"time" : "17:16", "title" : "第五批中国梦歌曲(30首)", "status" : 0},
+        {"time" : "18:16", "title" : "第一动画乐园", "status" : 0},
+        {"time" : "19:16", "title" : "新闻联播", "status" : 0},
+        {"time" : "19:46", "title" : "天气预报", "status" : 1}
+      ]}
+  ]
+}
