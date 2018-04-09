@@ -1,10 +1,10 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 <code>
-*.js linguist-language=android
-*.css linguist-language=android
-*.xml linguist-language=android
-*.html linguist-language=android
-*.java linguist-language=android
-*.c linguist-language=android
+*.js linguist-language=java
+*.css linguist-language=java
+*.xml linguist-language=java
+*.html linguist-language=java
+*.java linguist-language=java
+*.c linguist-language=java
 </code>
