@@ -244,6 +244,10 @@ public abstract class BaseFragment extends Fragment {
         getBaseActivity().showActivityResult(clazz, requestCode);
     }
 
+    protected void showActivityResult(Class<? extends Activity> clazz, int requestCode, Bundle bundle) {
+        getBaseActivity().showActivityResult(clazz, requestCode, bundle);
+    }
+
     /**
      * 切换activity
      * @param clazz activity

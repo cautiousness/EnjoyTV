@@ -1,6 +1,5 @@
 package com.fuj.enjoytv.activity.main.now;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,7 +14,6 @@ import android.widget.RelativeLayout;
 
 import com.fuj.enjoytv.R;
 import com.fuj.enjoytv.activity.now.NowPlayActivity;
-import com.fuj.enjoytv.activity.tv_play.TVPlayActivity;
 import com.fuj.enjoytv.adapter.NowAdapter;
 import com.fuj.enjoytv.adapter.base.RVAdapter;
 import com.fuj.enjoytv.base.BaseFragment;
@@ -64,7 +62,7 @@ public class NowFragment extends BaseFragment implements INowContract.View {
             public void onItemClick(ViewGroup parent, View view, Now now, int position) {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(Constant.BUNDLE_NOW, now);
-                showActivity(NowPlayActivity.class, bundle);
+                showActivityResult(NowPlayActivity.class, 1, bundle);
             }
 
             @Override
@@ -148,11 +146,18 @@ public class NowFragment extends BaseFragment implements INowContract.View {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mIjkVideo.setVideoPath("http://dlhls.cdn.zhanqi.tv/zqlive/251416_kZ7mH.m3u8");
-        mIjkVideo.seekTo(0);
-        mIjkVideo.setAspectRatio(PlayStateParams.fitparent);
-        mIjkVideo.start();
-        setFloatVisible(true);
+        switch (resultCode) {
+            case Constant.RESULT_CODE_PLAY_PATH:
+                mIjkVideo.setVideoPath(data.getStringExtra(Constant.BUNDLE_PLAY_PATH));
+                mIjkVideo.seekTo(0);
+                mIjkVideo.setAspectRatio(PlayStateParams.fitparent);
+                mIjkVideo.start();
+                setFloatVisible(true);
+                break;
+            default:
+                break;
+        }
+
     }
 
     private void closeFloatWindow() {

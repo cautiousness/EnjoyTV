@@ -1,6 +1,7 @@
 package com.fuj.enjoytv.activity.now;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.fuj.enjoytv.model.now.ChatEvent;
 import com.fuj.enjoytv.model.now.Now;
 import com.fuj.enjoytv.tools.video.Effect;
 import com.fuj.enjoytv.utils.Constant;
+import com.fuj.enjoytv.utils.LogUtils;
 import com.fuj.enjoytv.video.MediaUtils;
 import com.fuj.enjoytv.video.PlayStateParams;
 import com.fuj.enjoytv.video.PlayerView;
@@ -173,9 +175,15 @@ public class NowPlayFragment extends BaseFragment implements INowPlayContact.Vie
         if (player != null && player.onBackPressed()) {
             return;
         }
+
         if (wakeLock != null) {
             wakeLock.release();
         }
+
+        Intent intent = new Intent();
+        intent.putExtra(Constant.BUNDLE_PLAY_PATH, mNow.url);
+        getActivity().setResult(Constant.RESULT_CODE_PLAY_PATH, intent);
+        getActivity().finish();
     }
 
     private class MyViewPagerAdapter extends FragmentPagerAdapter {

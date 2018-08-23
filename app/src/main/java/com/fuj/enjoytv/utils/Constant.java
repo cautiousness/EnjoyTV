@@ -5,6 +5,8 @@ package com.fuj.enjoytv.utils;
  * Created by dell
  */
 public interface Constant {
+    int RESULT_CODE_PLAY_PATH = 100;
+
     String TAG = "[ENJOY]";
 
     String CONFIG = "config";
@@ -12,6 +14,7 @@ public interface Constant {
     String BUNDLE_TVDET = "bundle_tvdet";
     String BUNDLE_NOW = "bundle_now";
     String BUNDLE_PLAYLIST = "bundle_playlist";
+    String BUNDLE_PLAY_PATH = "bundle_play_path";
     String BUNDLE_USER_NAME = "bundle_user_name";
 
     String LOC_LAT = "loc_lat";

@@ -1,5 +1,6 @@
 package com.fuj.enjoytv.activity.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -19,6 +20,7 @@ import com.fuj.enjoytv.activity.main.user.UserFragment;
 import com.fuj.enjoytv.activity.main.user.UserPresenter;
 import com.fuj.enjoytv.base.BaseActivity;
 import com.fuj.enjoytv.base.BaseFragment;
+import com.fuj.enjoytv.utils.Constant;
 import com.fuj.enjoytv.utils.LogUtils;
 import com.fuj.enjoytv.utils.PermissionUtils;
 import com.fuj.enjoytv.widget.main.DragBubbleView;
@@ -195,6 +197,15 @@ public class MainActivity extends BaseActivity implements ActivityCompat.OnReque
         DragBubbleView bubbleView = (DragBubbleView) findViewById(R.id.bubble_chat);
         bubbleView.setText("99+");
         //bubbleView.setOnBubbleStateListener(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch(resultCode){
+            case Constant.RESULT_CODE_PLAY_PATH:
+                fragments[2].onActivityResult(requestCode, resultCode, data);
+                break;
+        }
     }
 
     /**

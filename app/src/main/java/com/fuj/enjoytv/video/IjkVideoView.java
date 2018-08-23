@@ -2,8 +2,6 @@ package com.fuj.enjoytv.video;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;

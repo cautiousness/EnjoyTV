@@ -228,6 +228,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivityForResult(intent, requestCode);
     }
 
+    protected void showActivityResult(Class<? extends Activity> clazz, int requestCode, Bundle bundle) {
+        Intent intent = new Intent(this, clazz);
+        intent.putExtras(bundle);
+        startActivityForResult(intent, requestCode);
+    }
+
     /**
      * 切换activity
      * @param clazz activity

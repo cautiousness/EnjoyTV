@@ -30,7 +30,6 @@ public class NowPlayActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         if(fragment != null) {
             fragment.onBackPressed();
         }
