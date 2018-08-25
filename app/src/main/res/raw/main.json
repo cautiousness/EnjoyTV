@@ -22,18 +22,18 @@
       {"pic" : "ic_channel_3d", "title" : "购物", "url" : ""}
     ],
     "gif" : [
-      {"pic" : "gif1", "title" : "震惊", "url" : ""},
-      {"pic" : "gif13", "title" : "震惊+1", "url" : ""},
-      {"pic" : "gif3", "title" : "震惊+2", "url" : ""},
-      {"pic" : "gif4", "title" : "震惊+3", "url" : ""},
-      {"pic" : "gif7", "title" : "震惊+4", "url" : ""},
-      {"pic" : "gif8", "title" : "震惊+5", "url" : ""},
-      {"pic" : "gif9", "title" : "震惊+6", "url" : ""},
-      {"pic" : "gif10", "title" : "震惊+7", "url" : ""},
-      {"pic" : "gif11", "title" : "震惊+8", "url" : ""},
-      {"pic" : "gif12", "title" : "震惊+9", "url" : ""},
-      {"pic" : "gif15", "title" : "震惊+10", "url" : ""},
-      {"pic" : "gif14", "title" : "震惊+11", "url" : ""}
+      {"pic" : "gif1", "title" : "都已经不省人事了", "url" : ""},
+      {"pic" : "gif13", "title" : "骑摩托车千万别太快了", "url" : ""},
+      {"pic" : "gif3", "title" : "这开车转弯的水平也太差了", "url" : ""},
+      {"pic" : "gif4", "title" : "捡个易拉罐的动作也这么酷", "url" : ""},
+      {"pic" : "gif7", "title" : "头发剪得翘起来了，真是神奇", "url" : ""},
+      {"pic" : "gif8", "title" : "大家不要怕，车门口搭木桥下车", "url" : ""},
+      {"pic" : "gif9", "title" : "不要以为戴头盔的就一定是骑车", "url" : ""},
+      {"pic" : "gif10", "title" : "抱起我的大萌熊去逛街", "url" : ""},
+      {"pic" : "gif11", "title" : "吃西瓜大赛，看得出来是真拼啊", "url" : ""},
+      {"pic" : "gif12", "title" : "突然感觉味不对，原来是抱反了", "url" : ""},
+      {"pic" : "gif15", "title" : "刮台风时最好别出门", "url" : ""},
+      {"pic" : "gif14", "title" : "不要在小姐姐面前玩魔术", "url" : ""}
     ]
   }
 }

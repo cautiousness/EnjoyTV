@@ -1,62 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/root"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".activity.main.MainActivity">
+
+    <include
+        layout="@layout/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/span" />
+
     <LinearLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
         android:background="#ffffff"
         android:baselineAligned="false"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
         android:paddingBottom="4dp">
+
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
+
             <com.fuj.enjoytv.widget.main.TabView
                 android:id="@+id/tab_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:onClick="onItemClick"
-                app:iconWidth="30dp"
-                app:iconHeight="30dp"/>
+                app:iconHeight="30dp"
+                app:iconWidth="30dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:textSize="12sp"
                 android:layout_below="@id/tab_tv"
-                android:text="@string/tab_tv"/>
+                android:layout_centerHorizontal="true"
+                android:text="@string/tab_tv"
+                android:textSize="12sp" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
             <com.fuj.enjoytv.widget.main.TabView
                 android:id="@+id/tab_chat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:onClick="onItemClick"
-                app:iconWidth="30dp"
-                app:iconHeight="30dp"/>
+                app:iconHeight="30dp"
+                app:iconWidth="30dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:textSize="12sp"
                 android:layout_below="@id/tab_chat"
-                android:text="@string/tab_chat"/>
+                android:layout_centerHorizontal="true"
+                android:text="@string/tab_chat"
+                android:textSize="12sp" />
+
             <com.fuj.enjoytv.widget.main.DragBubbleView
                 android:id="@+id/bubble_chat"
                 android:layout_width="wrap_content"
@@ -73,54 +92,53 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
+
             <com.fuj.enjoytv.widget.main.TabView
                 android:id="@+id/tab_now"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:onClick="onItemClick"
-                app:iconWidth="30dp"
-                app:iconHeight="30dp"/>
+                app:iconHeight="30dp"
+                app:iconWidth="30dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:textSize="12sp"
                 android:layout_below="@id/tab_now"
-                android:text="@string/tab_now"/>
+                android:layout_centerHorizontal="true"
+                android:text="@string/tab_now"
+                android:textSize="12sp" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
+
             <com.fuj.enjoytv.widget.main.TabView
                 android:id="@+id/tab_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:onClick="onItemClick"
-                app:iconWidth="30dp"
-                app:iconHeight="30dp"/>
+                app:iconHeight="30dp"
+                app:iconWidth="30dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:textSize="12sp"
                 android:layout_below="@id/tab_user"
-                android:text="@string/tab_user"/>
+                android:layout_centerHorizontal="true"
+                android:text="@string/tab_user"
+                android:textSize="12sp" />
         </RelativeLayout>
     </LinearLayout>
+
     <TextView
         android:id="@+id/span"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_above="@id/bottom"
-        android:background="@color/gray_light"/>
-
-    <include
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/span"
-        layout="@layout/content_main"/>
+        android:background="@color/gray_light" />
 </RelativeLayout>

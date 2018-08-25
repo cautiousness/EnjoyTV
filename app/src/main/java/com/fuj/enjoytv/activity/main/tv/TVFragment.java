@@ -96,14 +96,12 @@ public class TVFragment extends BaseFragment implements ITVContract.View {
     }
 
     private void initNavi() {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 5);
-        mNaviRV.setLayoutManager(gridLayoutManager);
+        mNaviRV.setLayoutManager(new GridLayoutManager(getContext(), 5));
         mNaviRV.setAdapter(mNaviAdapter);
     }
 
     public void initFalls() {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
-        mFallRV.setLayoutManager(gridLayoutManager);
+        mFallRV.setLayoutManager(new GridLayoutManager(getContext(), 2));
         mFallRV.setAdapter(mFallAdapter);
     }
 
