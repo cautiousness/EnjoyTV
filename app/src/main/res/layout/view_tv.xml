@@ -62,8 +62,9 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <com.fuj.enjoytv.widget.tv.NestedScrollView
         android:layout_width="match_parent"
+        android:id="@+id/scrollView"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <LinearLayout
@@ -87,7 +88,7 @@
             <com.fuj.enjoytv.widget.comm.MarqueeView
                 android:id="@+id/tv_marqueeview"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="35dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:layout_marginTop="10dp"
@@ -100,5 +101,5 @@
                 android:nestedScrollingEnabled="false"
                 android:background="@color/white"/>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </com.fuj.enjoytv.widget.tv.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

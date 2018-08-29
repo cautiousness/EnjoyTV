@@ -511,7 +511,7 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
                     mOnCompletionListener.onCompletion(mMediaPlayer);
                 }
 
-                ToastUtils.showToast(mAppContext, "无信号");
+                ToastUtils.showToast(mAppContext, "主播不在家,去看看别的主播吧");
             }
             return true;
         }

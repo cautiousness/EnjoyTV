@@ -148,16 +148,20 @@ public class NowFragment extends BaseFragment implements INowContract.View {
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode) {
             case Constant.RESULT_CODE_PLAY_PATH:
-                mIjkVideo.setVideoPath(data.getStringExtra(Constant.BUNDLE_PLAY_PATH));
-                mIjkVideo.seekTo(0);
-                mIjkVideo.setAspectRatio(PlayStateParams.fitparent);
-                mIjkVideo.start();
-                setFloatVisible(true);
+                resultPlay(data);
                 break;
             default:
                 break;
         }
 
+    }
+
+    private void resultPlay(Intent data) {
+        mIjkVideo.setVideoPath(data.getStringExtra(Constant.BUNDLE_PLAY_PATH));
+        mIjkVideo.seekTo(0);
+        mIjkVideo.setAspectRatio(PlayStateParams.fitparent);
+        mIjkVideo.start();
+        setFloatVisible(true);
     }
 
     private void closeFloatWindow() {

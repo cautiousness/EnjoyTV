@@ -2,6 +2,7 @@ package com.fuj.enjoytv.activity.main.tv;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
@@ -25,6 +26,7 @@ import com.fuj.enjoytv.model.MainResult;
 import com.fuj.enjoytv.model.main.Pic_title;
 import com.fuj.enjoytv.utils.JsonUtils;
 import com.fuj.enjoytv.widget.comm.MarqueeView;
+import com.fuj.enjoytv.widget.tv.NestedScrollView;
 import com.fuj.enjoytv.widget.tv.ViewPagerIndicator;
 import com.google.gson.Gson;
 
@@ -51,6 +53,18 @@ public class TVFragment extends BaseFragment implements ITVContract.View {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+
+    @Bind(R.id.appbar)
+    AppBarLayout appBarLayout;
+
+    @Bind(R.id.scrollView)
+    NestedScrollView scrollView;
+
+    @Bind(R.id.id_viewpager)
+    ViewPager mViewPager;
+
+    @Bind(R.id.tv_dotLL)
+    LinearLayout linearLayout;
 
     private MainLoopAdapter mLoopAdapter;
     private NaviAdapter mNaviAdapter;
@@ -92,6 +106,7 @@ public class TVFragment extends BaseFragment implements ITVContract.View {
     private void initView() {
         initNavi();
         initFalls();
+        initScrollView();
         mMarqueeView.startPlay();
     }
 
@@ -105,9 +120,16 @@ public class TVFragment extends BaseFragment implements ITVContract.View {
         mFallRV.setAdapter(mFallAdapter);
     }
 
+    private void initScrollView() {
+        scrollView.setFlingOverflowListener(new NestedScrollView.OnFlingOverflowListener() {
+            @Override
+            public void onFling(float velocity) {
+                appBarLayout.setExpanded(true,true);
+            }
+        });
+    }
+
     private void initViewPager() {
-        final ViewPager mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.tv_dotLL);
         //mViewPager.setPageMargin(50);
         mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(mLoopAdapter);
