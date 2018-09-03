@@ -40,7 +40,7 @@ public class NowPlayActivity extends BaseActivity {
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
             View focusView = getCurrentFocus();
             if (KeyboardAssitant.isShouldHideInput(focusView, ev)) {
-                if(KeyboardAssitant.hideInputMethod(this, focusView)) {
+                if(KeyboardAssitant.hideInputMethod(getApplication(), focusView)) {
                     return true;
                 }
             }

@@ -45,7 +45,7 @@ public class NowPlayChatFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapter = new NowPlayChatAdapter(getContext(), new ArrayList<NowChat>(), R.layout.item_chat);
+        mAdapter = new NowPlayChatAdapter(getContext().getApplicationContext(), new ArrayList<NowChat>(), R.layout.item_chat);
     }
 
     @Override
@@ -73,7 +73,8 @@ public class NowPlayChatFragment extends Fragment {
             return;
         }
 
-        addMsg("me", chatET.getText().toString(), 1);
+        String msg = chatET.getText().toString();
+        addMsg("me", msg, 1);
         chatET.getEditableText().clear();
     }
 
@@ -81,5 +82,11 @@ public class NowPlayChatFragment extends Fragment {
         mAdapter.addData(mAdapter.getItemCount(), new NowChat(user, msg, level));
         chatRV.scrollToPosition(mAdapter.getItemCount() - 1);
         EventBus.getDefault().post(new ChatEvent(msg));
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 }

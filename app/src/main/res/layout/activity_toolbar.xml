@@ -12,11 +12,11 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/id_tool_bar"
             android:layout_width="match_parent"
-            android:layout_height="76dp"
-            android:background="@color/trans"
-            app:navigationIcon="?attr/homeAsUpIndicator"
+            android:layout_height="70dp"
             android:fitsSystemWindows="true"
-            android:clipToPadding="true">
+            android:clipToPadding="true"
+            android:background="@drawable/bg_title"
+            app:navigationIcon="?attr/homeAsUpIndicator">
             <TextView
                 android:id="@+id/toolbar_title"
                 android:layout_width="wrap_content"

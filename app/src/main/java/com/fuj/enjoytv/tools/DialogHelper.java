@@ -107,10 +107,10 @@ public class DialogHelper {
      * @param gravity 面板位置
      * @param paramsX 面板布局参数设置
      */
-    /*public void showFlexboxDialog(Activity activity, final View view, final int yOffset, final int gravity, final int paramsX) {
-        mActivity = new SoftReference<>(activity);
-        if (activity != null) {
-            activity.runOnUiThread(new Runnable() {
+    /*public void showFlexboxDialog(Activity activity_splash, final View view, final int yOffset, final int gravity, final int paramsX) {
+        mActivity = new SoftReference<>(activity_splash);
+        if (activity_splash != null) {
+            activity_splash.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     flexboxDialog = new Dialog(mActivity.get(), R.style.flexboxDialog);

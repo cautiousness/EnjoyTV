@@ -32,6 +32,7 @@ import com.fuj.enjoytv.listener.OnPlayerBackListener;
 import com.fuj.enjoytv.listener.OnShowThumbnailListener;
 import com.fuj.enjoytv.utils.LogUtils;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,38 +102,48 @@ public class PlayerView {
     private static final int MESSAGE_SEEK_NEW_POSITION = 3; // 设置新位置
     private static final int MESSAGE_HIDE_CENTER_BOX = 4; // 隐藏提示的box
     private static final int MESSAGE_RESTART_PLAY = 5; // 重新播放
+    private Handler mHandler = new PlayHandler(this);
 
-    private Handler mHandler = new Handler(Looper.getMainLooper()) {
+    private static class PlayHandler extends Handler {
+        private WeakReference<PlayerView> mPlayView;
+
+        public PlayHandler(PlayerView playerView) {
+            mPlayView = new WeakReference<>(playerView);
+        }
+
         @Override
         public void handleMessage(Message msg) {
+            PlayerView playerView = mPlayView.get();
+            if(playerView == null) return;
+
             switch (msg.what) {
                 case MESSAGE_HIDE_CENTER_BOX: // 滑动完成，隐藏滑动提示的box
-                    query.id(R.id.app_video_volume_box).gone();
-                    query.id(R.id.app_video_brightness_box).gone();
-                    query.id(R.id.app_video_fastForward_box).gone();
+                    playerView.query.id(R.id.app_video_volume_box).gone();
+                    playerView.query.id(R.id.app_video_brightness_box).gone();
+                    playerView.query.id(R.id.app_video_fastForward_box).gone();
                     break;
                 case MESSAGE_SEEK_NEW_POSITION: // 滑动完成，设置播放进度
-                    if (!isLive && newPosition >= 0) {
-                        videoView.seekTo((int) newPosition);
-                        newPosition = -1;
+                    if (!playerView.isLive && playerView.newPosition >= 0) {
+                        playerView.videoView.seekTo((int) playerView.newPosition);
+                        playerView.newPosition = -1;
                     }
                     break;
                 case MESSAGE_SHOW_PROGRESS: // 滑动中，同步播放进度
-                    long pos = syncProgress();
-                    if (!isDragging && isShowControlPanl) {
+                    long pos = playerView.syncProgress();
+                    if (!playerView.isDragging && playerView.isShowControlPanl) {
                         msg = obtainMessage(MESSAGE_SHOW_PROGRESS);
                         sendMessageDelayed(msg, 1000 - (pos % 1000));
-                        updatePausePlay();
+                        playerView.updatePausePlay();
                     }
                     break;
                 case MESSAGE_RESTART_PLAY: // 重新去播放
-                    status = PlayStateParams.STATE_ERROR;
-                    startPlay();
-                    updatePausePlay();
+                    playerView.status = PlayStateParams.STATE_ERROR;
+                    playerView.startPlay();
+                    playerView.updatePausePlay();
                     break;
             }
         }
-    };
+    }
 
     private AutoPlayRunnable mAutoPlayRunnable = new AutoPlayRunnable(); // 控制面板收起或者显示的轮询监听
     private OrientationEventListener orientationEventListener; // Activity界面方向监听

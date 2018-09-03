@@ -149,12 +149,13 @@ public class MainActivity extends BaseActivity implements ActivityCompat.OnReque
     }
 
     private void initPermission() {
-        PermissionUtils.requestPermission(this, PermissionUtils.CODE_WAKE_LOCK, mPermissionGrant);
-        PermissionUtils.requestPermission(this, PermissionUtils.CODE_CAMERA, mPermissionGrant);
-        PermissionUtils.requestPermission(this, PermissionUtils.CODE_ACCESS_FINE_LOCATION, mPermissionGrant);
-        PermissionUtils.requestPermission(this, PermissionUtils.CODE_ACCESS_COARSE_LOCATION, mPermissionGrant);
-        PermissionUtils.requestPermission(this, PermissionUtils.CODE_READ_PHONE_STATE, mPermissionGrant);
-        PermissionUtils.requestPermission(this, PermissionUtils.CODE_PERMISSION_RECEIVE_BOOT_COMPLETED, mPermissionGrant);
+        PermissionUtils.init(this);
+        PermissionUtils.requestPermission(PermissionUtils.CODE_WAKE_LOCK, mPermissionGrant);
+        PermissionUtils.requestPermission(PermissionUtils.CODE_CAMERA, mPermissionGrant);
+        PermissionUtils.requestPermission(PermissionUtils.CODE_ACCESS_FINE_LOCATION, mPermissionGrant);
+        PermissionUtils.requestPermission(PermissionUtils.CODE_ACCESS_COARSE_LOCATION, mPermissionGrant);
+        PermissionUtils.requestPermission(PermissionUtils.CODE_READ_PHONE_STATE, mPermissionGrant);
+        PermissionUtils.requestPermission(PermissionUtils.CODE_PERMISSION_RECEIVE_BOOT_COMPLETED, mPermissionGrant);
     }
 
     private PermissionUtils.PermissionGrant mPermissionGrant = new PermissionUtils.PermissionGrant() {
@@ -190,7 +191,7 @@ public class MainActivity extends BaseActivity implements ActivityCompat.OnReque
     @Override
     public void onRequestPermissionsResult(final int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        PermissionUtils.requestPermissionsResult(this, requestCode, permissions, grantResults, mPermissionGrant);
+        PermissionUtils.requestPermissionsResult(requestCode, permissions, grantResults, mPermissionGrant);
     }
 
     private void addBubble() {
@@ -206,6 +207,12 @@ public class MainActivity extends BaseActivity implements ActivityCompat.OnReque
                 fragments[2].onActivityResult(requestCode, resultCode, data);
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveTaskToBack(true);
     }
 
     /**

@@ -29,12 +29,16 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="x6Hh6r2DAkiwwGeUkygM8aauDpwQ8xPb"/>
-        <activity android:name=".activity.main.MainActivity">
+        <activity android:name=".activity.splash.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeSplash">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.main.MainActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".activity.tv_play.TVPlayActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity android:name=".activity.now.NowPlayActivity"

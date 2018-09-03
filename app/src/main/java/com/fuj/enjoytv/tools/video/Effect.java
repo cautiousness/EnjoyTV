@@ -25,6 +25,7 @@ import com.fuj.enjoytv.utils.DensityUtils;
 import com.fuj.enjoytv.utils.LogUtils;
 
 import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
 import java.util.Random;
 
 /**
@@ -41,27 +42,25 @@ public class Effect {
     private Handler mHandler;
 
     private static int count;
-    private static Effect instance;
-    private static SoftReference<Context> mContext;
+    private static WeakReference<Context> mContext;
 
-    private Effect(Context context) {
-        mContext = new SoftReference<>(context);
+    private Effect() {}
+
+    public static Effect getInstance() {
+        return SingleTon.INSTANCE;
+    }
+
+    private static class SingleTon {
+        private static final Effect INSTANCE = new Effect();
+    }
+
+    public void init(Context context) {
+        mContext = new WeakReference<>(context);
         random = new Random();
         initLayout();
         initDrawable();
         initInterpolators();
         mHandler = new Handler();
-    }
-
-    public static Effect getInstance(Context context) {
-        if(instance == null) {
-            synchronized (Effect.class) {
-                if(instance == null) {
-                    instance = new Effect(context);
-                }
-            }
-        }
-        return instance;
     }
 
     public void startHeartAnimator(final ViewGroup parent) {

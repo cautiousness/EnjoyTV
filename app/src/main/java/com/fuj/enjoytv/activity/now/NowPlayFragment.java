@@ -51,7 +51,6 @@ public class NowPlayFragment extends BaseFragment implements INowPlayContact.Vie
     @Bind(R.id.app_video_box)
     RelativeLayout mRootView;
 
-    private Effect mEffect;
     private Now mNow;
     private String[] mTabTitles = new String[] {"聊天", "主播详情"};
     private Fragment[] mFragmentArrays = new Fragment[mTabTitles.length];
@@ -65,7 +64,7 @@ public class NowPlayFragment extends BaseFragment implements INowPlayContact.Vie
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
         mNow = (Now) getArguments().getSerializable(Constant.BUNDLE_NOW);
-        mEffect = Effect.getInstance(getContext());
+        Effect.getInstance().init(getContext());
     }
 
     @Override
@@ -140,7 +139,7 @@ public class NowPlayFragment extends BaseFragment implements INowPlayContact.Vie
         if (player != null) {
             player.onPause();
         }
-        MediaUtils.muteAudioFocus(getContext(), true); //恢复系统其它媒体的状态
+        MediaUtils.muteAudioFocus(getContext().getApplicationContext(), true); //恢复系统其它媒体的状态
     }
 
     @Override
@@ -149,7 +148,7 @@ public class NowPlayFragment extends BaseFragment implements INowPlayContact.Vie
         if (player != null) {
             player.onResume();
         }
-        MediaUtils.muteAudioFocus(getContext(), false); //暂停系统其它媒体的状态
+        MediaUtils.muteAudioFocus(getContext().getApplicationContext(), false); //暂停系统其它媒体的状态
         if (wakeLock != null) {
             wakeLock.acquire();
         }
@@ -211,7 +210,7 @@ public class NowPlayFragment extends BaseFragment implements INowPlayContact.Vie
     @Subscribe(threadMode = ThreadMode.MAIN) //在ui线程执行
     public void onChatEvent(ChatEvent chatEvent) {
         if ("666".equals(chatEvent.msg)) {
-            mEffect.startHeartAnimator(mRootView);
+            Effect.getInstance().startHeartAnimator(mRootView);
         } else {
             mBulletView.updateView(chatEvent.msg);
         }

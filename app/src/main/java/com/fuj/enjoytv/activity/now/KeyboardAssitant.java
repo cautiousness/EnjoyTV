@@ -31,7 +31,7 @@ public class KeyboardAssitant {
     private FrameLayout.LayoutParams frameLayoutParams;
 
     private KeyboardAssitant() {
-        FrameLayout content = (FrameLayout) mActivity.get().findViewById(android.R.id.content);
+        FrameLayout content = mActivity.get().findViewById(android.R.id.content);
         mChildOfContent = content.getChildAt(0);
         mChildOfContent.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             public void onGlobalLayout() {

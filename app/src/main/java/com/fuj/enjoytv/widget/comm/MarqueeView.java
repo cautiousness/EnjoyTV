@@ -95,7 +95,7 @@ public class MarqueeView extends View {
         }
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        mCurLineYPos = (int)((getMeasuredHeight() + mTexRect.height()) / 1.5);
+        mCurLineYPos = (getMeasuredHeight() + mTexRect.height()) / 2;
         mPreLineYPos = mCurLineYPos - mLineHeight;
         mNextLineYPos = mCurLineYPos + mLineHeight;
     }

@@ -12,6 +12,7 @@ import com.fuj.enjoytv.model.main.Pic_title;
 import com.fuj.enjoytv.utils.DensityUtils;
 import com.fuj.enjoytv.utils.LogUtils;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,12 +31,14 @@ public class ViewPagerIndicator implements ViewPager.OnPageChangeListener {
     private List<Pic_title> mList;
     private TextView mLoopTV;
     private ViewPager mViewPager;
+    private ViewPagerThread mViewPagerThread;
 
     public ViewPagerIndicator(ViewPager viewPager, Context context, LinearLayout dotLayout, TextView textView, List<Pic_title> list) {
         this.mList = list;
         this.mViewPager = viewPager;
         this.mLoopTV = textView;
         this.mSize = mList.size() - 2;
+        mViewPagerThread = new ViewPagerThread(this);
 
         for (int i = 0; i < mSize; i++) {
             ImageView imageView = new ImageView(context);
@@ -90,27 +93,41 @@ public class ViewPagerIndicator implements ViewPager.OnPageChangeListener {
     public void onPageScrollStateChanged(int state) {}
 
     private void aotuScroll() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (!mIsStop) {
-                    mViewPager.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            mViewPager.setCurrentItem((++mIndex) % mList.size());
-                        }
-                    });
+        mViewPagerThread.start();
+    }
 
-                    try {
-                        synchronized (this) {
-                            wait(DELAY);
-                        }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+    private static class ViewPagerThread extends Thread {
+        private static WeakReference<ViewPagerIndicator> mViewPagerIndicator;
+
+        public ViewPagerThread(ViewPagerIndicator viewPagerIndicator) {
+            mViewPagerIndicator = new WeakReference<>(viewPagerIndicator);
+        }
+
+        @Override
+        public void run() {
+            while (!mViewPagerIndicator.get().mIsStop) {
+                mViewPagerIndicator.get().mViewPager.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mViewPagerIndicator.get().mViewPager.setCurrentItem((
+                            ++mViewPagerIndicator.get().mIndex)
+                            % mViewPagerIndicator.get().mList.size());
                     }
+                });
+
+                try {
+                    synchronized (this) {
+                        wait(DELAY);
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
-        }).start();
+        }
+    }
+
+    public void onDestroy() {
+        mIsStop = true;
     }
 
     private void setSelectedDotBackground(ImageView imageView) {

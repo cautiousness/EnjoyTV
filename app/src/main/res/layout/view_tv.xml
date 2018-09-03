@@ -5,7 +5,6 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:fitsSystemWindows="true">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -70,14 +69,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/silver_white">
+            android:orientation="vertical">
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/tv_navi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/white"/>
+                android:layout_gravity="center_horizontal"/>
             <ImageView
                 android:id="@+id/tv_adv"
                 android:layout_width="match_parent"
@@ -98,8 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:nestedScrollingEnabled="false"
-                android:background="@color/white"/>
+                android:nestedScrollingEnabled="false"/>
         </LinearLayout>
     </com.fuj.enjoytv.widget.tv.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

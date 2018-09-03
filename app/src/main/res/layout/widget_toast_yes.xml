@@ -2,18 +2,21 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerInParent="true"
         android:background="@drawable/bg_toast">
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_yes"
-            android:layout_centerInParent="true"/>
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerInParent="true"
+            app:lottie_fileName="anim_success.json"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"/>
         <TextView
             android:id="@+id/textToast"
             android:layout_width="wrap_content"

@@ -90,8 +90,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     public int getStatusBarHeight(Context context) {
         int result = 0;
-        int resourceId = context.getResources().getIdentifier(
-                "status_bar_height", "dimen", "android");
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         if(resourceId > 0) {
             result = context.getResources().getDimensionPixelSize(resourceId);
         }
@@ -276,8 +275,8 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param gravity 面板位置
      * @param paramsX 面板布局参数设置
      */
-    /*protected void showFlexboxDialog(Activity activity, final View view, final int yOffset, final int gravity, final int paramsX) {
-        dialogHelper.showFlexboxDialog(activity, view, yOffset, gravity, paramsX);
+    /*protected void showFlexboxDialog(Activity activity_splash, final View view, final int yOffset, final int gravity, final int paramsX) {
+        dialogHelper.showFlexboxDialog(activity_splash, view, yOffset, gravity, paramsX);
     }*/
 
     /**

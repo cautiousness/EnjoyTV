@@ -69,6 +69,7 @@ public class TVFragment extends BaseFragment implements ITVContract.View {
     private MainLoopAdapter mLoopAdapter;
     private NaviAdapter mNaviAdapter;
     private FallsAdapter mFallAdapter;
+    private ViewPagerIndicator mViewPagerIndicator;
     private ITVContract.Presenter mPresenter;
 
     @Override
@@ -131,10 +132,12 @@ public class TVFragment extends BaseFragment implements ITVContract.View {
 
     private void initViewPager() {
         //mViewPager.setPageMargin(50);
+        mViewPagerIndicator = new ViewPagerIndicator(mViewPager,
+            getContext(), linearLayout, loopTV, mLoopAdapter.getList());
         mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(mLoopAdapter);
         mViewPager.setPageTransformer(true, new ScaleInTransformer());
-        mViewPager.addOnPageChangeListener(new ViewPagerIndicator(mViewPager, getContext(), linearLayout, loopTV, mLoopAdapter.getList()));
+        mViewPager.addOnPageChangeListener(mViewPagerIndicator);
     }
 
     private void initAdapter() {
@@ -189,5 +192,11 @@ public class TVFragment extends BaseFragment implements ITVContract.View {
                 mFallAdapter.updateRecyclerView(result.datas.gif);
             }
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mViewPagerIndicator.onDestroy();
     }
 }

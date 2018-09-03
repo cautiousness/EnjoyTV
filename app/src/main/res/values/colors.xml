@@ -14,6 +14,7 @@
     <color name="gray_light">#979797</color>
     <color name="silver_white">#e5e5e5</color>
     <color name="green">#24ff00</color>
+    <color name="blue_sky">#46c0f6</color>
 
     <color name="bg_loop">#545454</color>
     <color name="bg_loop_dark">#848484</color>
