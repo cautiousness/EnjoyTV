@@ -211,7 +211,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void setMarginTop(View view) {
-        setViewMargins(view, 0, DensityUtils.dp2px(getActivity(), 76), 0, 0);
+        setViewMargins(view, 0, DensityUtils.dp2px(getActivity(), 70), 0, 0);
     }
 
     /**

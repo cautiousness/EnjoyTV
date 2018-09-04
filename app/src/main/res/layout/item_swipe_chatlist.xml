@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:clipToPadding="false"
+    android:clipChildren="false">
+    <com.fuj.enjoytv.widget.comm.SwipeItemLayout
+        android:id="@+id/swipe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:clipToPadding="false"
+        android:clipChildren="false">
+
+        <include layout="@layout/item_chatlist"/>
+
+        <TextView
+            android:id="@+id/swipe_del"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@color/red"
+            android:gravity="center"
+            android:text="@string/menu_del"
+            android:textColor="@color/white"/>
+    </com.fuj.enjoytv.widget.comm.SwipeItemLayout>
+</LinearLayout>

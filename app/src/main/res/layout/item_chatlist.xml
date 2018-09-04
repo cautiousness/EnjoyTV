@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:clipToPadding="false"
+    android:clipChildren="false">
+    <ImageView
+        android:id="@+id/item_headimg"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_margin="8dp"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/item_headimg"/>
+    <TextView
+        android:id="@+id/item_nameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="5dp"
+        android:layout_alignTop="@id/item_headimg"
+        android:layout_toRightOf="@id/item_headimg"
+        android:textColor="@color/black"
+        android:text="@string/item_name"/>
+    <TextView
+        android:id="@+id/item_contentTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignBottom ="@id/item_headimg"
+        android:layout_toRightOf="@id/item_headimg"
+        android:layout_toLeftOf="@+id/item_timeTV"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="14sp"
+        android:text="@string/item_content"/>
+    <TextView
+        android:id="@+id/item_timeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/item_headimg"
+        android:layout_marginRight="10dp"/>
+    <com.fuj.enjoytv.widget.main.DragBubbleView
+        android:id="@+id/item_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom ="@id/item_headimg"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        app:bubbleColor="#ff0000"
+        app:bubbleRadius="10dp"
+        app:textColor="#ffffff"
+        app:textSize="12sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/silver_white"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

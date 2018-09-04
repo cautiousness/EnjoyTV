@@ -13,8 +13,16 @@
     <!-- user view -->
     <string name="user_nameTV">用户名</string>
 
+    <!-- menu -->
+    <string name="menu_del">删除</string>
+
     <!-- title -->
     <string name="title_chat">消息</string>
+
+    <!-- chat -->
+    <string name="item_headimg">头像</string>
+    <string name="item_name">名称</string>
+    <string name="item_content">内容</string>
 
     <!-- nowplay -->
     <string name="now_play_send">发送</string>

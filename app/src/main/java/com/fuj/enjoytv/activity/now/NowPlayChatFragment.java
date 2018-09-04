@@ -18,7 +18,6 @@ import com.fuj.enjoytv.model.now.NowChat;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -45,7 +44,7 @@ public class NowPlayChatFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapter = new NowPlayChatAdapter(getContext().getApplicationContext(), new ArrayList<NowChat>(), R.layout.item_chat);
+        mAdapter = new NowPlayChatAdapter(getContext().getApplicationContext(), new ArrayList<NowChat>(), R.layout.item_play_chat);
     }
 
     @Override

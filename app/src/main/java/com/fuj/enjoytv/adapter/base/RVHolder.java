@@ -22,6 +22,8 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.fuj.enjoytv.widget.main.DragBubbleView;
+
 public class RVHolder extends RecyclerView.ViewHolder {
     private int mPosition;
     private int mLayoutId;
@@ -73,6 +75,12 @@ public class RVHolder extends RecyclerView.ViewHolder {
     public RVHolder setText(int viewId, String text) {
         TextView tv = getView(viewId);
         tv.setText(text);
+        return this;
+    }
+
+    public RVHolder setBubble(int viewId, String text) {
+        DragBubbleView bubbleView = getView(viewId);
+        bubbleView.setText(text);
         return this;
     }
 

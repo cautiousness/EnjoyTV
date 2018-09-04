@@ -1,0 +1,54 @@
+{
+  "result" : "true",
+  "datas" : [
+    {
+      "pic" : "ic_avatar1",
+      "name" : "lily",
+      "content" : "今天晚上在老西门等我，我们一起吃晚饭，我可能会晚点到",
+      "time" : "16:01",
+      "msgCount" : "1"
+    },
+    {
+      "pic" : "ic_avatar2",
+      "name" : "飞翔的企鹅",
+      "content" : "快下载我发给你的文件，看看什么里面推荐的攻略怎么样",
+      "time" : "15:23",
+      "msgCount" : "3"
+    },
+    {
+      "pic" : "ic_avatar3",
+      "name" : "坦白说",
+      "content" : "学习使我感到快乐",
+      "time" : "14:56",
+      "msgCount" : "0"
+    },
+    {
+      "pic" : "ic_avatar4",
+      "name" : "旅行圈",
+      "content" : "晚上一起踢球去",
+      "time" : "13:24",
+      "msgCount" : "0"
+    },
+    {
+      "pic" : "ic_avatar5",
+      "name" : "cristiano",
+      "content" : "通过QQ,电脑和手机上的文件都能收发自如，更有手机在线查阅，轻松你的工作和生活",
+      "time" : "13:01",
+      "msgCount" : "0"
+    },
+    {
+      "pic" : "ic_avatar6",
+      "name" : "随心所欲",
+      "content" : "好像明天天气不错，我想去奥体中心跑步",
+      "time" : "昨天",
+      "msgCount" : "0"
+    },
+    {
+      "pic" : "ic_avatar7",
+      "name" : "南哥楚雨",
+      "content" : "怪不得我总是对不上",
+      "time" : "星期三",
+      "msgCount" : "0"
+    }
+  ]
+}
