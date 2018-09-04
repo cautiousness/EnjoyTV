@@ -275,8 +275,8 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param gravity 面板位置
      * @param paramsX 面板布局参数设置
      */
-    /*protected void showFlexboxDialog(Activity activity_splash, final View view, final int yOffset, final int gravity, final int paramsX) {
-        dialogHelper.showFlexboxDialog(activity_splash, view, yOffset, gravity, paramsX);
+    /*protected void showFlexboxDialog(Activity activity, final View view, final int yOffset, final int gravity, final int paramsX) {
+        dialogHelper.showFlexboxDialog(activity, view, yOffset, gravity, paramsX);
     }*/
 
     /**

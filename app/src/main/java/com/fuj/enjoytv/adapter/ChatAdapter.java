@@ -21,19 +21,15 @@ import java.util.List;
  * Created by gang
  */
 public class ChatAdapter extends RVAdapter<Chat> {
-    private int position;
     private SoftReference<Context> mContext;
-    private List<Chat> mDatas;
 
     public ChatAdapter(Context context, List<Chat> datas, int layoutId) {
         super(context, datas, layoutId);
         this.mContext = new SoftReference<>(context);
-        this.mDatas = datas;
     }
 
     @Override
     public void convert(final RVHolder holder, final Chat chat) {
-        position = holder.getLayoutPosition();
         ImageView imageView = holder.getView(R.id.item_headimg);
         Glide.with(mContext.get())
         .load(getResource(chat.pic))
@@ -50,8 +46,8 @@ public class ChatAdapter extends RVAdapter<Chat> {
             @Override
             public void onClick(View v) {
                 SwipeItemLayout.closeMenu();
-                mDatas.remove(position);
-                notifyItemRemoved(position);
+                mDatas.remove(holder.getLayoutPosition());
+                notifyItemRemoved(holder.getLayoutPosition());
             }
         });
     }

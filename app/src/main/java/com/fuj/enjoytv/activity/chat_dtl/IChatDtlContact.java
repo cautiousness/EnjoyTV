@@ -1,12 +1,9 @@
-package com.fuj.enjoytv.activity.tv;
+package com.fuj.enjoytv.activity.chat_dtl;
 
 import com.fuj.enjoytv.base.IBasePresenter;
 import com.fuj.enjoytv.base.IBaseView;
 
-/**
- * Created by gang
- */
-public interface ITVDetContact {
+public interface IChatDtlContact {
     interface View extends IBaseView<Presenter> {
 
     }

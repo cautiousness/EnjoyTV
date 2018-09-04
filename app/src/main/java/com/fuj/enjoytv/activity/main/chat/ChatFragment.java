@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fuj.enjoytv.R;
+import com.fuj.enjoytv.activity.chat_dtl.ChatDtlActivity;
 import com.fuj.enjoytv.adapter.ChatAdapter;
 import com.fuj.enjoytv.adapter.base.RVAdapter;
 import com.fuj.enjoytv.base.BaseFragment;
@@ -16,6 +17,7 @@ import com.fuj.enjoytv.model.ChatResult;
 import com.fuj.enjoytv.model.MainResult;
 import com.fuj.enjoytv.model.chat.Chat;
 import com.fuj.enjoytv.model.CommResult;
+import com.fuj.enjoytv.utils.Constant;
 import com.fuj.enjoytv.utils.JsonUtils;
 import com.google.gson.Gson;
 
@@ -70,8 +72,9 @@ public class ChatFragment extends BaseFragment implements IChatContract.View {
         mChatAdapter.setOnItemClickListener(new RVAdapter.OnItemClickListener<Chat>() {
             @Override
             public void onItemClick(ViewGroup parent, View view, Chat chat, int position) {
-                showToast("点击了" + chat.name);
-                //showActivity(TVDetActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(Constant.BUNDLE_CHAT_DETAIL, chat);
+                showActivity(ChatDtlActivity.class, bundle);
             }
 
             @Override

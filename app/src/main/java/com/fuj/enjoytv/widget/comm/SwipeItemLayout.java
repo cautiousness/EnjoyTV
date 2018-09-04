@@ -9,14 +9,13 @@ import android.widget.Scroller;
 
 public class SwipeItemLayout extends ViewGroup {
     private int downX, moveX, moved;
-    private Scroller scroller = new Scroller(getContext());
     private boolean haveShowRight = false;
+    private Scroller scroller = new Scroller(getContext());
     public static SwipeItemLayout INSTANCE;
 
     public SwipeItemLayout(Context context) {
         super(context);
     }
-
 
     public SwipeItemLayout(Context context, AttributeSet attrs) {
         super(context, attrs);

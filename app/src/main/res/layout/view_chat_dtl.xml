@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/chat_dtl_effect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="10dp"
+            android:src="@mipmap/ic_blue"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/chat_dtl_send"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:text="@string/now_play_send"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@id/chat_dtl_effect"
+        android:background="@drawable/bg_subscribe_normal"/>
+    <EditText
+        android:id="@+id/chat_dtl_content"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:background="@mipmap/bg_edittext_normal"
+        android:layout_above="@id/chat_dtl_effect"
+        android:layout_toStartOf="@id/chat_dtl_send"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/chat_dtl_msg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/chat_dtl_content"/>
+</RelativeLayout>

@@ -16,6 +16,7 @@ public interface Constant {
     String BUNDLE_PLAYLIST = "bundle_playlist";
     String BUNDLE_PLAY_PATH = "bundle_play_path";
     String BUNDLE_USER_NAME = "bundle_user_name";
+    String BUNDLE_CHAT_DETAIL = "bundle_chat_detail";
 
     String LOC_LAT = "loc_lat";
     String LOC_LON = "loc_lon";

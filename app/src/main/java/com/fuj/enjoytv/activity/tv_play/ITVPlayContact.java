@@ -7,7 +7,7 @@ import com.fuj.enjoytv.base.IBaseView;
  * Created by gang
  */
 public interface ITVPlayContact {
-    interface View extends IBaseView<ITVPlayContact.Presenter> {
+    interface View extends IBaseView<Presenter> {
 
     }
 
