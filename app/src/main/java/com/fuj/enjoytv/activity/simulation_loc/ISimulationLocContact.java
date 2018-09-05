@@ -19,6 +19,8 @@ public interface ISimulationLocContact {
         void addMarker(OverlayOptions overlayOptions);
 
         void hook(LatLng mSelfLatLng);
+
+        void clearMarkers();
     }
 
     interface Presenter extends IBasePresenter {
@@ -30,5 +32,9 @@ public interface ISimulationLocContact {
         void reLocate();
 
         void setLocArg();
+
+        void refreshSelfMarker();
+
+        void onDestroy();
     }
 }

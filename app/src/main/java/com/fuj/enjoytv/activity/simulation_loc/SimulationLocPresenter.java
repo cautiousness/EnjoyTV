@@ -2,6 +2,7 @@ package com.fuj.enjoytv.activity.simulation_loc;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -15,24 +16,30 @@ import com.fuj.enjoytv.R;
 import com.fuj.enjoytv.utils.Constant;
 import com.fuj.enjoytv.utils.LogUtils;
 
+import java.lang.ref.WeakReference;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by gang
  */
 public class SimulationLocPresenter implements ISimulationLocContact.Presenter {
-    private float mCurZoom = 10;
+    private final static int MESSAGE_REFRESH = 1;
+    private float mCurZoom = 15;
 
     private LatLng mSelfLatLng;
     private LocationClient mLocClient;
     private MarkerOptions mSelfMarker;
     private MyLocationListener myListener;
-
+    private ExecutorService executor = Executors.newSingleThreadExecutor();
+    private RefreshHandler mHandler;
     private ISimulationLocContact.View mView;
 
     public SimulationLocPresenter(ISimulationLocContact.View view) {
         this.mView = view;
         mView.setPresenter(this);
+        mHandler = new RefreshHandler(this);
     }
 
     @Override
@@ -80,7 +87,7 @@ public class SimulationLocPresenter implements ISimulationLocContact.Presenter {
 
     private void startLocateThread() {
         mLocClient.start();
-        new Thread(new Runnable() {
+        executor.execute(new Runnable() {
             @Override
             public void run() {
                 while (mSelfLatLng == null) {
@@ -90,22 +97,11 @@ public class SimulationLocPresenter implements ISimulationLocContact.Presenter {
                         e.printStackTrace();
                     }
                 }
-                sendMapThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        LogUtils.i(" [latlng] " + mSelfLatLng);
-                        mSelfMarker.position(mSelfLatLng);
-                        mView.setMapCenterAndZoom(MapStatusUpdateFactory.newLatLngZoom(mSelfLatLng, mCurZoom));
-                        mView.hook(mSelfLatLng);
-                    }
-                });
+
+                mHandler.sendEmptyMessage(MESSAGE_REFRESH);
                 mLocClient.stop();
             }
-        }).start();
-    }
-
-    private void sendMapThread(Runnable runnable) {
-        new Handler(Looper.getMainLooper()).post(runnable);
+        });
     }
 
     @Override
@@ -114,12 +110,56 @@ public class SimulationLocPresenter implements ISimulationLocContact.Presenter {
         startLocateThread();
     }
 
+    @Override
+    public void refreshSelfMarker() {
+        if(mSelfLatLng == null) {
+            return;
+        }
+
+        mSelfMarker.position(mSelfLatLng);
+    }
+
+    @Override
+    public void onDestroy() {
+        if(!executor.isShutdown()) {
+            executor.shutdownNow();
+        }
+        mLocClient.stop();
+        mLocClient.unRegisterLocationListener(myListener);
+        myListener = null;
+    }
+
     private class MyLocationListener extends BDAbstractLocationListener {
         @Override
         public void onReceiveLocation(BDLocation location){
             if(location == null)
                 return;
             mSelfLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+        }
+    }
+
+    private static class RefreshHandler extends Handler {
+        private WeakReference<SimulationLocPresenter> mPresenter;
+
+        public RefreshHandler(SimulationLocPresenter presenter) {
+            mPresenter = new WeakReference<>(presenter);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case MESSAGE_REFRESH:
+                    float mCurZoom = mPresenter.get().mCurZoom;
+                    ISimulationLocContact.View mView = mPresenter.get().mView;
+                    MarkerOptions mSelfMarker = mPresenter.get().mSelfMarker;
+                    LatLng mSelfLatLng = mPresenter.get().mSelfLatLng;
+                    mView.clearMarkers();
+                    mView.addMarker(mSelfMarker.position(mSelfLatLng));
+                    mView.hook(mSelfLatLng);
+                    mView.setMapCenterAndZoom(MapStatusUpdateFactory.newLatLngZoom(mSelfLatLng, mCurZoom));
+                    break;
+            }
         }
     }
 }

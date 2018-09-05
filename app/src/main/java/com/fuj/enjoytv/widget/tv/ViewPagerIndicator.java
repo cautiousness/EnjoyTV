@@ -105,6 +105,10 @@ public class ViewPagerIndicator implements ViewPager.OnPageChangeListener {
 
         @Override
         public void run() {
+            if(mViewPagerIndicator.get() == null) {
+                return;
+            }
+
             while (!mViewPagerIndicator.get().mIsStop) {
                 mViewPagerIndicator.get().mViewPager.post(new Runnable() {
                     @Override

@@ -23,6 +23,8 @@ import com.fuj.enjoytv.utils.Constant;
 import com.fuj.enjoytv.utils.LogUtils;
 import com.fuj.enjoytv.widget.map.MapControlButton;
 
+import java.lang.ref.WeakReference;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -78,27 +80,10 @@ public class SimulationLocFragment extends BaseFragment implements ISimulationLo
             }
         });
 
-        mBaiduMap.setOnMapStatusChangeListener(new BaiduMap.OnMapStatusChangeListener() {
-            @Override
-            public void onMapStatusChangeStart(MapStatus mapStatus) {
-                mPresenter.setCurZoom(mapStatus.zoom);
-            }
-
-            @Override
-            public void onMapStatusChangeStart(MapStatus mapStatus, int i) {}
-
-            @Override
-            public void onMapStatusChange(MapStatus mapStatus) {}
-
-            @Override
-            public void onMapStatusChangeFinish(MapStatus mapStatus) {}
-        });
-
+        mBaiduMap.setOnMapStatusChangeListener(new MapChangeListener(this));
         mBaiduMap.setOnMapClickListener(new BaiduMap.OnMapClickListener() {
             @Override
-            public void onMapClick(LatLng latLng) {
-
-            }
+            public void onMapClick(LatLng latLng) {}
 
             @Override
             public boolean onMapPoiClick(MapPoi mapPoi) {
@@ -122,6 +107,7 @@ public class SimulationLocFragment extends BaseFragment implements ISimulationLo
     @Override
     public void setMapCenterAndZoom(MapStatusUpdate mapStatusUpdate) {
         mBaiduMap.animateMapStatus(mapStatusUpdate);
+        mPresenter.refreshSelfMarker();
     }
 
     @Override
@@ -133,5 +119,47 @@ public class SimulationLocFragment extends BaseFragment implements ISimulationLo
     public void hook(LatLng mSelfLatLng) {
         setPreDouble(Constant.LOC_LAT, mSelfLatLng.latitude);
         setPreDouble(Constant.LOC_LON, mSelfLatLng.longitude);
+    }
+
+    @Override
+    public void clearMarkers() {
+        mBaiduMap.clear();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
+        mBaiduMap.clear();
+        mBaiduMap.setOnMapStatusChangeListener(null);
+        mBaiduMap = null;
+        mMapView = null;
+        ButterKnife.unbind(this);
+    }
+
+    private static class MapChangeListener implements BaiduMap.OnMapStatusChangeListener {
+        private WeakReference<SimulationLocFragment> mFragment;
+
+
+        public MapChangeListener(SimulationLocFragment fragment) {
+            mFragment = new WeakReference<>(fragment);
+        }
+
+        @Override
+        public void onMapStatusChangeStart(MapStatus mapStatus) {
+            mFragment.get().mPresenter.setCurZoom(mapStatus.zoom);
+        }
+
+        @Override
+        public void onMapStatusChangeStart(MapStatus mapStatus, int i) {
+        }
+
+        @Override
+        public void onMapStatusChange(MapStatus mapStatus) {
+        }
+
+        @Override
+        public void onMapStatusChangeFinish(MapStatus mapStatus) {
+        }
     }
 }

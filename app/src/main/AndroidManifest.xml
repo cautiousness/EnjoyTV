@@ -28,7 +28,9 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="x6Hh6r2DAkiwwGeUkygM8aauDpwQ8xPb"/>
+            android:value="C5obhfZdbMdsQlgEFW7dA8S2yQzADfuB"/>
+        <!-- C5obhfZdbMdsQlgEFW7dA8S2yQzADfuB -->
+        <!-- x6Hh6r2DAkiwwGeUkygM8aauDpwQ8xPb -->
         <activity android:name=".activity.splash.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeSplash">
