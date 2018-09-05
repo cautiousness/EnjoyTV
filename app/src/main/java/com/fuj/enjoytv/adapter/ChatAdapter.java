@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.fuj.enjoytv.R;
 import com.fuj.enjoytv.adapter.base.RVAdapter;
 import com.fuj.enjoytv.adapter.base.RVHolder;
@@ -16,6 +17,8 @@ import com.fuj.enjoytv.widget.comm.SwipeItemLayout;
 
 import java.lang.ref.SoftReference;
 import java.util.List;
+
+import static com.baidu.mapapi.BMapManager.getContext;
 
 /**
  * Created by gang
@@ -31,11 +34,11 @@ public class ChatAdapter extends RVAdapter<Chat> {
     @Override
     public void convert(final RVHolder holder, final Chat chat) {
         ImageView imageView = holder.getView(R.id.item_headimg);
+        RequestOptions options = new RequestOptions()
+        .diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(mContext.get())
         .load(getResource(chat.pic))
-        .diskCacheStrategy(DiskCacheStrategy.ALL)
-        .centerCrop()
-        .transform(new GlideCircleTransform(mContext.get()))
+        .apply(options)
         .into(imageView);
         holder.setText(R.id.item_nameTV, chat.name);
         holder.setText(R.id.item_contentTV, chat.content);
