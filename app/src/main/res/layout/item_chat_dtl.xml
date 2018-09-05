@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:padding="15dp"
+            android:padding="10dp"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/chat_dtl_leftIV"
             android:background="@mipmap/ic_msg_left"/>
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:padding="15dp"
+            android:padding="10dp"
             android:textColor="@color/black"
             android:layout_toLeftOf="@id/chat_dtl_rightIV"
             android:layout_marginRight="10dp"

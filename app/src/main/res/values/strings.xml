@@ -19,6 +19,12 @@
     <!-- title -->
     <string name="title_chat">消息</string>
 
+    <!-- login -->
+    <string name="login_login">登录</string>
+    <string name="login_signup">注册</string>
+    <string name="login_success">欢迎回来</string>
+    <string name="login_failed">登录失败</string>
+
     <!-- chat -->
     <string name="item_headimg">头像</string>
     <string name="item_name">名称</string>
@@ -49,6 +55,7 @@
     <!-- toast -->
     <string name="toast_connfail">连接失败,请检查网络是否畅通</string>
     <string name="toast_loading">加载中</string>
+    <string name="toast_input_account">未输入用户名或密码</string>
     <string name="toast_loading_failed">加载失败</string>
     <string name="toast_loading_unfinished">未加载完成</string>
     <string name="toast_upload_fail">上传失败</string>

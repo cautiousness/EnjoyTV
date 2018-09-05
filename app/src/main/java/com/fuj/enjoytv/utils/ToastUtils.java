@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.fuj.enjoytv.R;
 
 import java.lang.ref.SoftReference;
@@ -47,7 +48,14 @@ public class ToastUtils {
     }
 
     public static void showYESorNO(Context context, int resId, String message) {
+        showYESorNO(context, resId, message, null);
+    }
+
+    public static void showYESorNO(Context context, int resId, String message, String animID) {
         View view = View.inflate(context, resId, null);
+        LottieAnimationView image = view.findViewById(R.id.icon);
+        image.setAnimation(null == animID ? "anim_success.json" : animID);
+        image.playAnimation();
         TextView text = (TextView) view.findViewById(R.id.textToast);
         text.setText(message); // 设置显示文字
         if(sToast1 == null || sToast1.get() == null){

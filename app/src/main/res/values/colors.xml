@@ -17,6 +17,7 @@
     <color name="blue_sky">#46c0f6</color>
     <color name="red">#f5322f</color>
     <color name="yellow">#fca360</color>
+    <color name="bg_login">#7adfb8</color>
 
     <color name="bg_loop">#545454</color>
     <color name="bg_loop_dark">#848484</color>

@@ -49,6 +49,8 @@
         <activity android:name=".activity.qrcode.QRCodeActivity"/>
         <activity android:name=".activity.chat_dtl.ChatDtlActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity android:name=".activity.login.LoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
 
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

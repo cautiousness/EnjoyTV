@@ -18,17 +18,17 @@
     <Button
         android:id="@+id/chat_dtl_send"
         android:layout_width="50dp"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:text="@string/now_play_send"
         android:layout_alignParentEnd="true"
         android:layout_above="@id/chat_dtl_effect"
-        android:background="@drawable/bg_subscribe_normal"/>
+        android:background="@drawable/selector_msg_btn"/>
     <EditText
         android:id="@+id/chat_dtl_content"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="10dp"
         android:background="@mipmap/bg_edittext_normal"
         android:layout_above="@id/chat_dtl_effect"

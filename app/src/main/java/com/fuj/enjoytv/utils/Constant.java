@@ -6,6 +6,7 @@ package com.fuj.enjoytv.utils;
  */
 public interface Constant {
     int RESULT_CODE_PLAY_PATH = 100;
+    int RESULT_CODE_LOGIN = 101;
 
     String TAG = "[ENJOY]";
 

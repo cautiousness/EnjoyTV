@@ -177,12 +177,26 @@ public abstract class BaseActivity extends AppCompatActivity {
         showNO(getString(resId));
     }
 
+    public void showLoginAnim(int resId, String animId) {
+        showLoginAnim(getString(resId), animId);
+    }
+
     protected void showYES(final String msg) {
         hideLoadingDialog();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 ToastUtils.showYESorNO(getApplication(), R.layout.widget_toast_yes, msg);
+            }
+        });
+    }
+
+    protected void showLoginAnim(final String msg, final String animId) {
+        hideLoadingDialog();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ToastUtils.showYESorNO(getApplication(), R.layout.widget_toast_yes, msg, animId);
             }
         });
     }
@@ -334,5 +348,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public String getUserName() {
         return getPreString(Constant.BUNDLE_USER_NAME);
+    }
+
+    public void setUser(String name) {
+        setPreString(Constant.BUNDLE_USER_NAME, name);
     }
 }

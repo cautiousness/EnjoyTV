@@ -206,6 +206,9 @@ public class MainActivity extends BaseActivity implements ActivityCompat.OnReque
             case Constant.RESULT_CODE_PLAY_PATH:
                 fragments[2].onActivityResult(requestCode, resultCode, data);
                 break;
+            case Constant.RESULT_CODE_LOGIN:
+                fragments[3].onActivityResult(requestCode, resultCode, data);
+                break;
         }
     }
 

@@ -46,6 +46,7 @@ public class ChatDtlFragment extends BaseFragment implements IChatDtlContact.Vie
         root = (ViewGroup) inflater.inflate(R.layout.view_chat_dtl, container, false);
         ButterKnife.bind(this, root);
         initView();
+        setTitle(mChat.name);
     }
 
     @Override

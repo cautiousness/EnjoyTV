@@ -463,6 +463,10 @@ public abstract class BaseFragment extends Fragment {
         return getBaseActivity().getUserName();
     }
 
+    public void setUser(String name) {
+        getBaseActivity().setUser(name);
+    }
+
     public boolean isLogin() {
         return null != getUserName() && !"".equals(getUserName());
     }
