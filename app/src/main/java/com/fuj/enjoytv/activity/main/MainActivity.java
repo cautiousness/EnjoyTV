@@ -1,5 +1,6 @@
 package com.fuj.enjoytv.activity.main;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,6 +26,9 @@ import com.fuj.enjoytv.utils.LogUtils;
 import com.fuj.enjoytv.utils.PermissionUtils;
 import com.fuj.enjoytv.widget.main.DragBubbleView;
 import com.fuj.enjoytv.widget.main.TabView;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.entity.LocalMedia;
 
 public class MainActivity extends BaseActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
     private TabView tv;
@@ -63,16 +67,16 @@ public class MainActivity extends BaseActivity implements ActivityCompat.OnReque
     }
 
     public void initTabView() {
-        tv = (TabView) findViewById(R.id.tab_tv);
+        tv = findViewById(R.id.tab_tv);
         tv.setIcon(R.mipmap.ic_tab_tv_selected, R.mipmap.ic_anchor_tv_selected);
 
-        chat = (TabView) findViewById(R.id.tab_chat);
+        chat = findViewById(R.id.tab_chat);
         chat.setIcon(R.mipmap.ic_tab_chat_normal, R.mipmap.ic_anchor_chat_normal);
 
-        now = (TabView) findViewById(R.id.tab_now);
+        now = findViewById(R.id.tab_now);
         now.setIcon(R.mipmap.ic_tab_now_normal, R.mipmap.ic_anchor_null);
 
-        user = (TabView) findViewById(R.id.tab_user);
+        user = findViewById(R.id.tab_user);
         user.setIcon(R.mipmap.ic_tab_user_normal, R.mipmap.ic_anchor_user_normal);
         selectTab(fragments[0], true);
     }
@@ -195,7 +199,7 @@ public class MainActivity extends BaseActivity implements ActivityCompat.OnReque
     }
 
     private void addBubble() {
-        DragBubbleView bubbleView = (DragBubbleView) findViewById(R.id.bubble_chat);
+        DragBubbleView bubbleView = findViewById(R.id.bubble_chat);
         bubbleView.setText("99+");
         //bubbleView.setOnBubbleStateListener(this);
     }
@@ -208,6 +212,11 @@ public class MainActivity extends BaseActivity implements ActivityCompat.OnReque
                 break;
             case Constant.RESULT_CODE_LOGIN:
                 fragments[3].onActivityResult(requestCode, resultCode, data);
+                break;
+            case -1:
+                fragments[3].onActivityResult(requestCode, resultCode, data);
+                break;
+            default:
                 break;
         }
     }

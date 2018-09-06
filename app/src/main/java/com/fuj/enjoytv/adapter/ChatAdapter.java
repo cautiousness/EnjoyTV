@@ -35,6 +35,8 @@ public class ChatAdapter extends RVAdapter<Chat> {
     public void convert(final RVHolder holder, final Chat chat) {
         ImageView imageView = holder.getView(R.id.item_headimg);
         RequestOptions options = new RequestOptions()
+        .centerCrop()
+        .transform(new GlideCircleTransform(getContext()))
         .diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(mContext.get())
         .load(getResource(chat.pic))

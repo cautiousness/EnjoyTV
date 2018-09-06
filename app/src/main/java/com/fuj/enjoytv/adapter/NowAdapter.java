@@ -32,8 +32,6 @@ public class NowAdapter extends RVAdapter<Now> {
     @Override
     public void convert(RVHolder holder, Now now) {
         RequestOptions options = new RequestOptions()
-        .centerCrop()
-        .transform(new GlideCircleTransform(getContext()))
         .diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(mContext.get())
         .load(getResource(now.cover))
