@@ -1,13 +1,10 @@
 package com.fuj.enjoytv.hook;
 
-import android.content.Context;
-import android.database.Cursor;
 import android.location.Criteria;
 import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.SystemClock;
 import android.telephony.CellIdentityCdma;
@@ -26,7 +23,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
@@ -40,18 +36,14 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class SimulationLoc implements IXposedHookLoadPackage {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-        Object activityThread = XposedHelpers.callStaticMethod(XposedHelpers.findClass("android.app.ActivityThread", null), "currentActivityThread");
-        Context systemContext = (Context) XposedHelpers.callMethod(activityThread, "getSystemContext");
-        Uri uri = Uri.parse("content://name.caiyao.fakegps.data.AppInfoProvider/app");
-        Cursor cursor = systemContext.getContentResolver().query(uri, new String[]{"lat", "lon", "lac", "cid"}, "package_name=?", new String[]{lpparam.packageName}, null);
-        if (cursor != null && cursor.moveToNext()) {
-            double latitude = cursor.getDouble(cursor.getColumnIndex("lat")) + (double) new Random().nextInt(100) / 1000000 + ((double) new Random().nextInt(99999999)) / 100000000000000d;
-            double longitude = cursor.getDouble(cursor.getColumnIndex("lon")) + (double) new Random().nextInt(100) / 1000000 + ((double) new Random().nextInt(99999999)) / 100000000000000d;
-            int lac = cursor.getInt(cursor.getColumnIndex("lac"));
-            int cid = cursor.getInt(cursor.getColumnIndex("cid"));
-            HookAndChange(lpparam.classLoader, latitude, longitude, lac, cid);
-            cursor.close();
+        if(!lpparam.packageName.equals("com.fuj.enjoytv.activity.simulation_loc.")) {
+            XposedBridge.log("not found package");
+            return;
         }
+        double latitude = 33.245148;
+        double longtitude = 104.250909;
+        //找到要Hook的类名和函数，创建自己的类
+        HookAndChange(lpparam.classLoader, latitude, longtitude, 0, 0);
     }
 
     private void HookAndChange(ClassLoader classLoader, final double latitude, final double longtitude, final int lac, final int cid) {

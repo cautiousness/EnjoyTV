@@ -95,6 +95,7 @@ dependencies {
     //tools
     compile 'org.apache.commons:commons-lang3:3.4'
     compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.yanzhenjie:permission:1.0.4'
     compile 'de.robv.android.xposed:api:81'
     compile 'com.airbnb.android:lottie:2.3.1'
     compile 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'

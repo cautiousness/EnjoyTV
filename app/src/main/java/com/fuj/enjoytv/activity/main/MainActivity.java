@@ -1,10 +1,9 @@
 package com.fuj.enjoytv.activity.main;
 
-import android.app.Activity;
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -22,13 +21,9 @@ import com.fuj.enjoytv.activity.main.user.UserPresenter;
 import com.fuj.enjoytv.base.BaseActivity;
 import com.fuj.enjoytv.base.BaseFragment;
 import com.fuj.enjoytv.utils.Constant;
-import com.fuj.enjoytv.utils.LogUtils;
-import com.fuj.enjoytv.utils.PermissionUtils;
 import com.fuj.enjoytv.widget.main.DragBubbleView;
 import com.fuj.enjoytv.widget.main.TabView;
-import com.luck.picture.lib.PictureSelector;
-import com.luck.picture.lib.config.PictureConfig;
-import com.luck.picture.lib.entity.LocalMedia;
+import com.yanzhenjie.permission.AndPermission;
 
 public class MainActivity extends BaseActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
     private TabView tv;
@@ -153,49 +148,13 @@ public class MainActivity extends BaseActivity implements ActivityCompat.OnReque
     }
 
     private void initPermission() {
-        PermissionUtils.init(this);
-        PermissionUtils.requestPermission(PermissionUtils.CODE_WAKE_LOCK, mPermissionGrant);
-        PermissionUtils.requestPermission(PermissionUtils.CODE_CAMERA, mPermissionGrant);
-        PermissionUtils.requestPermission(PermissionUtils.CODE_ACCESS_FINE_LOCATION, mPermissionGrant);
-        PermissionUtils.requestPermission(PermissionUtils.CODE_ACCESS_COARSE_LOCATION, mPermissionGrant);
-        PermissionUtils.requestPermission(PermissionUtils.CODE_READ_PHONE_STATE, mPermissionGrant);
-        PermissionUtils.requestPermission(PermissionUtils.CODE_PERMISSION_RECEIVE_BOOT_COMPLETED, mPermissionGrant);
-    }
-
-    private PermissionUtils.PermissionGrant mPermissionGrant = new PermissionUtils.PermissionGrant() {
-        @Override
-        public void onPermissionGranted(int requestCode) {
-            switch (requestCode) {
-                case PermissionUtils.CODE_RECORD_AUDIO:
-                    break;
-                case PermissionUtils.CODE_GET_ACCOUNTS:
-                    break;
-                case PermissionUtils.CODE_READ_PHONE_STATE:
-                    break;
-                case PermissionUtils.CODE_CALL_PHONE:
-                    break;
-                case PermissionUtils.CODE_CAMERA:
-                    break;
-                case PermissionUtils.CODE_ACCESS_FINE_LOCATION:
-                    break;
-                case PermissionUtils.CODE_ACCESS_COARSE_LOCATION:
-                    break;
-                case PermissionUtils.CODE_READ_EXTERNAL_STORAGE:
-                    break;
-                case PermissionUtils.CODE_WRITE_EXTERNAL_STORAGE:
-                    break;
-                case PermissionUtils.CODE_WAKE_LOCK:
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
-
-    @Override
-    public void onRequestPermissionsResult(final int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        PermissionUtils.requestPermissionsResult(requestCode, permissions, grantResults, mPermissionGrant);
+        AndPermission.with(this)
+        .requestCode(100)
+        .permission(Manifest.permission.READ_PHONE_STATE, Manifest.permission.CAMERA,
+            Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WAKE_LOCK, Manifest.permission.RECORD_AUDIO)
+        .send();
     }
 
     private void addBubble() {
