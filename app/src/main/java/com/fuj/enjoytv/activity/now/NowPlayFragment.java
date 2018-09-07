@@ -23,7 +23,6 @@ import com.fuj.enjoytv.model.now.ChatEvent;
 import com.fuj.enjoytv.model.now.Now;
 import com.fuj.enjoytv.tools.video.Effect;
 import com.fuj.enjoytv.utils.Constant;
-import com.fuj.enjoytv.utils.LogUtils;
 import com.fuj.enjoytv.video.MediaUtils;
 import com.fuj.enjoytv.video.PlayStateParams;
 import com.fuj.enjoytv.video.PlayerView;
@@ -39,7 +38,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import tv.danmaku.ijk.media.player.IMediaPlayer;
 
 /**
  * Created by gang
@@ -88,7 +86,7 @@ public class NowPlayFragment extends BaseFragment implements INowPlayContact.Vie
     }
 
     private void initVideoView() {
-        PowerManager pm = (PowerManager) getContext().getSystemService(Context.POWER_SERVICE);
+        PowerManager pm = (PowerManager) getContext().getApplicationContext().getSystemService(Context.POWER_SERVICE);
         wakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "liveTAG");
         wakeLock.acquire();
         List<VideoijkBean> list = new ArrayList<>();
@@ -150,7 +148,7 @@ public class NowPlayFragment extends BaseFragment implements INowPlayContact.Vie
         }
         MediaUtils.muteAudioFocus(getContext().getApplicationContext(), false); //暂停系统其它媒体的状态
         if (wakeLock != null) {
-            wakeLock.acquire();
+            wakeLock.acquire(10 * 60 * 1000L);
         }
     }
 

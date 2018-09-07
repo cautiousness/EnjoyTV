@@ -8,18 +8,21 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.fuj.enjoytv.R;
 import com.fuj.enjoytv.base.BaseActivity;
 import com.fuj.enjoytv.utils.Constant;
+import com.fuj.enjoytv.widget.comm.GlideCircleTransform;
 import com.fuj.enjoytv.widget.comm.JellyInterpolator;
 
 import butterknife.Bind;
@@ -48,11 +51,22 @@ public class LoginActivity extends BaseActivity {
     @Bind(R.id.login_pswET)
     EditText pswET;
 
+    @Bind(R.id.login_avatorIV)
+    ImageView avatarIV;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        RequestOptions mOptions = new RequestOptions()
+        .centerCrop()
+        .transform(new GlideCircleTransform(this))
+        .diskCacheStrategy(DiskCacheStrategy.ALL);
+        Glide.with(this)
+        .load(getResources().getIdentifier("ic_user_avatar","mipmap", getPackageName()))
+        .apply(mOptions)
+        .into(avatarIV);
     }
 
     public void clickLogin(View view) {
@@ -115,6 +129,12 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onAnimationCancel(Animator animation) {}
         });
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.anim_trans_y_enter, R.anim.anim_trans_y_exit);
     }
 
     private void progressAnimator(final View view) {

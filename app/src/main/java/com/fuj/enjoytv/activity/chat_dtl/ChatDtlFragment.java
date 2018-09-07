@@ -65,7 +65,9 @@ public class ChatDtlFragment extends BaseFragment implements IChatDtlContact.Vie
     }
 
     private void initView() {
-        mRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        manager.setStackFromEnd(true);
+        mRV.setLayoutManager(manager);
         setMarginTop(mRV);
         mRV.setAdapter(mMsgAdapter);
         mRV.scrollToPosition(mMsgAdapter.getItemCount() - 1);

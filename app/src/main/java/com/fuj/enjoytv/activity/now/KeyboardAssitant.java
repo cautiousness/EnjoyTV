@@ -8,10 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 
 import java.lang.ref.SoftReference;
 
@@ -61,9 +59,9 @@ public class KeyboardAssitant {
     public static boolean isShouldHideInput(View v, MotionEvent event) {
         if (v != null && (v instanceof EditText)) {
             int[] leftTop = {0, 0};
-            ViewGroup parent = ((ViewGroup) v.getParent());
-            parent.getLocationInWindow(leftTop);
-            int left = leftTop[0], top = leftTop[1], bottom = top + parent.getHeight(), right = left + parent.getWidth();
+            ViewGroup parent = (ViewGroup) v.getParent();
+            v.getLocationInWindow(leftTop);
+            int left = leftTop[0], top = leftTop[1], bottom = top + v.getHeight(), right = parent.getWidth();
             return !(event.getX() > left && event.getX() < right && event.getY() > top && event.getY() < bottom);
         }
         return false;

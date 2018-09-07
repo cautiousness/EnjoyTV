@@ -40,7 +40,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.main.MainActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity android:name=".activity.tv_play.TVPlayActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity android:name=".activity.now.NowPlayActivity"
@@ -50,7 +51,7 @@
         <activity android:name=".activity.video.VideoActivity"/>
         <activity android:name=".activity.qrcode.QRCodeActivity"/>
         <activity android:name=".activity.chat_dtl.ChatDtlActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".activity.login.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
 

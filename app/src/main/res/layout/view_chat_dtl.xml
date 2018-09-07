@@ -2,7 +2,9 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
     <LinearLayout
         android:id="@+id/chat_dtl_effect"
         android:layout_width="match_parent"
@@ -28,9 +30,10 @@
     <EditText
         android:id="@+id/chat_dtl_content"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:background="@mipmap/bg_edittext_normal"
+        android:maxLines="6"
         android:layout_above="@id/chat_dtl_effect"
         android:layout_toStartOf="@id/chat_dtl_send"/>
     <android.support.v7.widget.RecyclerView

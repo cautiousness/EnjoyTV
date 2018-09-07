@@ -21,7 +21,6 @@ import com.fuj.enjoytv.activity.simulation_loc.SimulationLocActivity;
 import com.fuj.enjoytv.activity.video.VideoActivity;
 import com.fuj.enjoytv.base.BaseFragment;
 import com.fuj.enjoytv.utils.Constant;
-import com.fuj.enjoytv.utils.LogUtils;
 import com.fuj.enjoytv.widget.comm.GlideCircleTransform;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -162,6 +161,7 @@ public class UserFragment extends BaseFragment implements IUserContract.View, Vi
     private void clickLogin() {
         if(!isLogin()) {
             showActivityResult(LoginActivity.class, Constant.RESULT_CODE_LOGIN);
+            getBaseActivity().overridePendingTransition(R.anim.anim_trans_y_enter, R.anim.anim_trans_y_exit);
         }
     }
 

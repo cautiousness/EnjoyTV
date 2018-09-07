@@ -8,10 +8,12 @@
     <color name="transparent">#00ffffff</color>
     <color name="trans">#14000000</color>
     <color name="trans_all">#00000000</color>
+    <color name="trans_white">#14ffffff</color>
     <color name="black">#000000</color>
     <color name="black_trans">#C0000000</color>
     <color name="gray">#5e5d5d</color>
     <color name="gray_light">#979797</color>
+    <color name="gray_white">#b3b3b3</color>
     <color name="silver_white">#e5e5e5</color>
     <color name="green">#24ff00</color>
     <color name="blue_sky">#46c0f6</color>
