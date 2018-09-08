@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fuj.enjoytv.R;
-import com.fuj.enjoytv.model.PlaylistResult;
+import com.fuj.enjoytv.model.CommResult;
 import com.fuj.enjoytv.model.tv.Playlist;
 import com.fuj.enjoytv.utils.JsonUtils;
 import com.google.gson.Gson;
@@ -25,7 +25,6 @@ public class TVPlayListFragment extends Fragment {
     private static final float MIN_SCALE = 0.75f;
     private static final float MIN_ALPHA = 0.75f;
 
-    private List<Playlist> mList;
     private TabAdapter mTabAdapter;
     private VerticalViewPager mViewPager;
     private VerticalTabLayout mTablayout;
@@ -50,7 +49,7 @@ public class TVPlayListFragment extends Fragment {
     }
 
     private void initViewPager(View view) {
-        mViewPager = (VerticalViewPager) view.findViewById(R.id.verticalviewpager);
+        mViewPager = view.findViewById(R.id.verticalviewpager);
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
@@ -63,7 +62,7 @@ public class TVPlayListFragment extends Fragment {
             @Override
             public void onPageScrollStateChanged(int state) {}
         });
-        mViewPager.setAdapter(new TVPlaySubscribeFragmentAdapter(getFragmentManager(), mList));
+        mViewPager.setAdapter(new TVPlaySubscribeFragmentAdapter(getFragmentManager(), new ArrayList<Playlist>()));
         mViewPager.setPageMargin(1);
         mViewPager.setPageMarginDrawable(new ColorDrawable(getResources().getColor(R.color.gray_light)));
         mViewPager.setPageTransformer(true, new ViewPager.PageTransformer() {
@@ -87,7 +86,7 @@ public class TVPlayListFragment extends Fragment {
     }
 
     private void initTabLayout(View view) {
-        mTablayout = (VerticalTabLayout) view.findViewById(R.id.tablayout);
+        mTablayout = view.findViewById(R.id.tablayout);
         mTablayout.addOnTabSelectedListener(new VerticalTabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabView tab, int position) {
@@ -120,8 +119,7 @@ public class TVPlayListFragment extends Fragment {
 
     private void getData() {
         String content = JsonUtils.readJsonFile(getContext(), "playlist");
-        PlaylistResult result = new Gson().fromJson(content, PlaylistResult.class);
-        mList = result.datas;
-        mTabAdapter.updateData(mList);
+        CommResult result = new Gson().fromJson(content, CommResult.class);
+        mTabAdapter.updateData(result.datas);
     }
 }

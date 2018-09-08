@@ -16,6 +16,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 
 import com.fuj.enjoytv.utils.LogUtils;
+import com.fuj.enjoytv.utils.StringUtils;
 
 import java.io.File;
 import java.io.IOException;

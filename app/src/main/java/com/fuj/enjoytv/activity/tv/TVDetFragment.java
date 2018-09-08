@@ -13,7 +13,7 @@ import com.fuj.enjoytv.activity.tv_play.TVPlayActivity;
 import com.fuj.enjoytv.adapter.TVDetAdapter;
 import com.fuj.enjoytv.adapter.base.RVAdapter;
 import com.fuj.enjoytv.base.BaseFragment;
-import com.fuj.enjoytv.model.TVDetResult;
+import com.fuj.enjoytv.model.CommResult;
 import com.fuj.enjoytv.model.tv.TVDet;
 import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.utils.JsonUtils;
@@ -78,7 +78,7 @@ public class TVDetFragment extends BaseFragment implements ITVDetContact.View {
 
     private void getData() {
         String content = JsonUtils.readJsonFile(getContext(), "tvdet");
-        TVDetResult result = new Gson().fromJson(content, TVDetResult.class);
+        CommResult result = new Gson().fromJson(content, CommResult.class);
         mAdapter.updateRecyclerView(result.datas);
     }
 }

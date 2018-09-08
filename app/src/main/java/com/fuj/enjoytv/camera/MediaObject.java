@@ -1,5 +1,7 @@
 package com.fuj.enjoytv.camera;
 
+import com.fuj.enjoytv.utils.StringUtils;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

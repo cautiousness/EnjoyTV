@@ -3,6 +3,8 @@ package com.fuj.enjoytv.camera;
 import android.os.Environment;
 import android.util.Log;
 
+import com.fuj.enjoytv.utils.StringUtils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -278,7 +280,6 @@ public class FileUtils {
 
     /**
      * read file
-     * @param filePath
      * @param charsetName The name of a supported {@link java.nio.charset.Charset
      *                    </code>charset<code>}
      * @return if file not exist, return null, else return content of file

@@ -1,4 +1,4 @@
-package com.fuj.enjoytv.camera;
+package com.fuj.enjoytv.utils;
 
 import android.text.TextPaint;
 import android.text.TextUtils;

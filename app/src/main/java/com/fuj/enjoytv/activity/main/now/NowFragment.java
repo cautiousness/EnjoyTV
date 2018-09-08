@@ -17,7 +17,7 @@ import com.fuj.enjoytv.activity.now.NowPlayActivity;
 import com.fuj.enjoytv.adapter.NowAdapter;
 import com.fuj.enjoytv.adapter.base.RVAdapter;
 import com.fuj.enjoytv.base.BaseFragment;
-import com.fuj.enjoytv.model.NowResult;
+import com.fuj.enjoytv.model.CommResult;
 import com.fuj.enjoytv.model.now.Now;
 import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.utils.JsonUtils;
@@ -102,7 +102,7 @@ public class NowFragment extends BaseFragment implements INowContract.View {
 
     private void getData() {
         String content = JsonUtils.readJsonFile(getContext(), "now");
-        NowResult result = new Gson().fromJson(content, NowResult.class);
+        CommResult result = new Gson().fromJson(content, CommResult.class);
         mNowAdapter.updateRecyclerView(result.datas);
     }
 

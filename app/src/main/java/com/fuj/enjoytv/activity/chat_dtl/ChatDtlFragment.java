@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.fuj.enjoytv.R;
 import com.fuj.enjoytv.adapter.MessageAdapter;
 import com.fuj.enjoytv.base.BaseFragment;
-import com.fuj.enjoytv.model.MsgResult;
+import com.fuj.enjoytv.model.CommResult;
 import com.fuj.enjoytv.model.chat.Chat;
 import com.fuj.enjoytv.model.chat.Message;
 import com.fuj.enjoytv.utils.AppManager;
@@ -75,7 +75,7 @@ public class ChatDtlFragment extends BaseFragment implements IChatDtlContact.Vie
 
     private void getData() {
         String content = JsonUtils.readJsonFile(getContext(), "msglist");
-        MsgResult result = new Gson().fromJson(content, MsgResult.class);
+        CommResult result = new Gson().fromJson(content, CommResult.class);
         mMsgAdapter.updateRecyclerView(result.datas);
     }
 }

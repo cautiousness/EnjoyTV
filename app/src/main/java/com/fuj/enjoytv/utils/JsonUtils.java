@@ -2,16 +2,10 @@ package com.fuj.enjoytv.utils;
 
 import android.content.Context;
 
-import com.fuj.enjoytv.model.TVDetResult;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.ref.SoftReference;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by gang
@@ -34,20 +28,5 @@ public class JsonUtils {
             e.printStackTrace();
         }
         return builder.toString();
-    }
-
-    public static TVDetResult getResult(String json) {
-        Map<String, Object> objectMap = new Gson().fromJson(json, new TypeToken<Map<String, Object>>() {}.getType());
-        TVDetResult TVDetResult = new TVDetResult();
-        for (Map.Entry<String, Object> entry : objectMap.entrySet()) {
-            if("result".equals(entry.getKey())) {
-                TVDetResult.result = (String) entry.getValue();
-            }
-
-            if ("datas".equals(entry.getKey())) {
-                TVDetResult.datas = (List) entry.getValue();
-            }
-        }
-        return TVDetResult;
     }
 }
