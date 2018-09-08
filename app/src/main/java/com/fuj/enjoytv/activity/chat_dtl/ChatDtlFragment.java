@@ -13,7 +13,7 @@ import com.fuj.enjoytv.base.BaseFragment;
 import com.fuj.enjoytv.model.MsgResult;
 import com.fuj.enjoytv.model.chat.Chat;
 import com.fuj.enjoytv.model.chat.Message;
-import com.fuj.enjoytv.utils.Constant;
+import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.utils.JsonUtils;
 import com.google.gson.Gson;
 
@@ -34,8 +34,8 @@ public class ChatDtlFragment extends BaseFragment implements IChatDtlContact.Vie
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null && getArguments().containsKey(Constant.BUNDLE_CHAT_DETAIL)) {
-            mChat = getArguments().getParcelable(Constant.BUNDLE_CHAT_DETAIL);
+        if (getArguments() != null && getArguments().containsKey(AppManager.BUNDLE_CHAT_DETAIL)) {
+            mChat = getArguments().getParcelable(AppManager.BUNDLE_CHAT_DETAIL);
         }
         initAdapter();
         getData();

@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.fuj.enjoytv.model.tv.Playlist;
-import com.fuj.enjoytv.utils.Constant;
+import com.fuj.enjoytv.utils.AppManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class TVPlaySubscribeFragmentAdapter extends FragmentPagerAdapter {
         for (Playlist playlist : mLists) {
             TVPlaySubscribeFragment fragment = new TVPlaySubscribeFragment();
             Bundle bundle = new Bundle();
-            bundle.putSerializable(Constant.BUNDLE_PLAYLIST, playlist);
+            bundle.putSerializable(AppManager.BUNDLE_PLAYLIST, playlist);
             fragment.setArguments(bundle);
             fragments.add(fragment);
         }

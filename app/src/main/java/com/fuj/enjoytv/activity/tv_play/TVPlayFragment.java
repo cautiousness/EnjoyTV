@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 import com.fuj.enjoytv.R;
 import com.fuj.enjoytv.base.BaseFragment;
 import com.fuj.enjoytv.model.tv.TVDet;
-import com.fuj.enjoytv.utils.Constant;
+import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.video.MediaUtils;
 import com.fuj.enjoytv.video.PlayStateParams;
 import com.fuj.enjoytv.video.PlayerView;
@@ -46,7 +46,7 @@ public class TVPlayFragment extends BaseFragment implements ITVPlayContact.View 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTVDet = (TVDet) getArguments().getSerializable(Constant.BUNDLE_TVDET);
+        mTVDet = (TVDet) getArguments().getSerializable(AppManager.BUNDLE_TVDET);
     }
 
     @Override

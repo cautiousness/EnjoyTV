@@ -80,7 +80,7 @@ public class PreferenceUtils {
     }
 
     public static String readConfigString(Context context, String key) {
-		SharedPreferences sharedPreferences = context.getSharedPreferences(Constant.CONFIG, Context.MODE_PRIVATE);
+		SharedPreferences sharedPreferences = context.getSharedPreferences(AppManager.CONFIG, Context.MODE_PRIVATE);
 		return sharedPreferences.getString(key, "");
 	}
 }

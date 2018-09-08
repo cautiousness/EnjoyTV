@@ -1,7 +1,6 @@
 package com.fuj.enjoytv.activity.simulation_loc;
 
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 
 import com.baidu.location.BDAbstractLocationListener;
@@ -13,8 +12,6 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.fuj.enjoytv.R;
-import com.fuj.enjoytv.utils.Constant;
-import com.fuj.enjoytv.utils.LogUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.concurrent.ExecutorService;

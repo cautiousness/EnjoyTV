@@ -14,7 +14,7 @@ import java.util.Locale;
  * 常量类
  * Created by dell
  */
-public class Constant {
+public class AppManager {
     public static final int RESULT_CODE_PLAY_PATH = 100;
     public static final int RESULT_CODE_LOGIN = 101;
 
@@ -42,6 +42,7 @@ public class Constant {
 
     public static void init(Context context) {
         mContext = context;
+        LogUtils.getInstance().init(context);
     }
 
     public static synchronized String getAppName() {
@@ -111,5 +112,15 @@ public class Constant {
 
     public static String getTimeShort() {
         return new SimpleDateFormat("hh:mm:ss", Locale.CHINA).format(new Date());
+    }
+
+    public static String getImagePath(String path, int width, int high) {
+        String[] name = path.split("/");
+        String savePath = imageDir() + "temp_" + width + "_" + high + "_" + name[name.length - 1];
+        File file = new File(savePath);
+        if(file.exists()) {
+            return file.getAbsolutePath();
+        }
+        return BitmapUtils.converPath(path, width, high, savePath);
     }
 }

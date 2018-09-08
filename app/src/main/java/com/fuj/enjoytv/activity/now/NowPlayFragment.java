@@ -22,7 +22,7 @@ import com.fuj.enjoytv.base.BaseFragment;
 import com.fuj.enjoytv.model.now.ChatEvent;
 import com.fuj.enjoytv.model.now.Now;
 import com.fuj.enjoytv.tools.video.Effect;
-import com.fuj.enjoytv.utils.Constant;
+import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.video.MediaUtils;
 import com.fuj.enjoytv.video.PlayStateParams;
 import com.fuj.enjoytv.video.PlayerView;
@@ -61,7 +61,7 @@ public class NowPlayFragment extends BaseFragment implements INowPlayContact.Vie
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
-        mNow = (Now) getArguments().getSerializable(Constant.BUNDLE_NOW);
+        mNow = (Now) getArguments().getSerializable(AppManager.BUNDLE_NOW);
         Effect.getInstance().init(getContext());
     }
 
@@ -179,8 +179,8 @@ public class NowPlayFragment extends BaseFragment implements INowPlayContact.Vie
         }
 
         Intent intent = new Intent();
-        intent.putExtra(Constant.BUNDLE_PLAY_PATH, mNow.url);
-        getActivity().setResult(Constant.RESULT_CODE_PLAY_PATH, intent);
+        intent.putExtra(AppManager.BUNDLE_PLAY_PATH, mNow.url);
+        getActivity().setResult(AppManager.RESULT_CODE_PLAY_PATH, intent);
         getActivity().finish();
     }
 

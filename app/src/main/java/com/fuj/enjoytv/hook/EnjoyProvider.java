@@ -8,7 +8,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.fuj.enjoytv.utils.Constant;
+import com.fuj.enjoytv.utils.AppManager;
 
 /**
  * Created by gang
@@ -17,7 +17,7 @@ public class EnjoyProvider extends ContentProvider {
     private static UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
-        sUriMatcher.addURI(Constant.PROVIDER, "app", 0);
+        sUriMatcher.addURI(AppManager.PROVIDER, "app", 0);
     }
 
     @Override

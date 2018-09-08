@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fuj.enjoytv.tools.DialogHelper;
-import com.fuj.enjoytv.utils.Constant;
+import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.utils.DensityUtils;
 import com.fuj.enjoytv.utils.LogUtils;
 import com.fuj.enjoytv.utils.PreferenceUtils;
@@ -282,39 +282,39 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void setPreString(String key, String s) {
-        PreferenceUtils.write(getContext(), Constant.CONFIG, key, s);
+        PreferenceUtils.write(getContext(), AppManager.CONFIG, key, s);
     }
 
     public void setPreLong(String key, long value) {
-        PreferenceUtils.write(getContext(), Constant.CONFIG, key, value);
+        PreferenceUtils.write(getContext(), AppManager.CONFIG, key, value);
     }
 
     public void setPreDouble(String key, double value) {
-        PreferenceUtils.write(getContext(), Constant.CONFIG, key, value);
+        PreferenceUtils.write(getContext(), AppManager.CONFIG, key, value);
     }
 
     public void setPreInt(String key, int value) {
-        PreferenceUtils.write(getContext(), Constant.CONFIG, key, value);
+        PreferenceUtils.write(getContext(), AppManager.CONFIG, key, value);
     }
 
     public void setPreBoolean(String key, boolean value) {
-        PreferenceUtils.write(getContext(), Constant.CONFIG, key, value);
+        PreferenceUtils.write(getContext(), AppManager.CONFIG, key, value);
     }
 
     public String getPreString(String key) {
-        return PreferenceUtils.readString(getContext(), Constant.CONFIG, key);
+        return PreferenceUtils.readString(getContext(), AppManager.CONFIG, key);
     }
 
     public double getDouble(String key) {
-        return PreferenceUtils.readDouble(getContext(), Constant.CONFIG, key);
+        return PreferenceUtils.readDouble(getContext(), AppManager.CONFIG, key);
     }
 
     public long getPreLong(String key) {
-        return PreferenceUtils.readLong(getContext(), Constant.CONFIG, key);
+        return PreferenceUtils.readLong(getContext(), AppManager.CONFIG, key);
     }
 
     public boolean getPreBoolean(String key) {
-        return PreferenceUtils.readBoolean(getContext(), Constant.CONFIG, key);
+        return PreferenceUtils.readBoolean(getContext(), AppManager.CONFIG, key);
     }
 
     public String getEditString(EditText et) {

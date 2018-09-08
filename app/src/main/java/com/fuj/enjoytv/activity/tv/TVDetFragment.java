@@ -15,9 +15,8 @@ import com.fuj.enjoytv.adapter.base.RVAdapter;
 import com.fuj.enjoytv.base.BaseFragment;
 import com.fuj.enjoytv.model.TVDetResult;
 import com.fuj.enjoytv.model.tv.TVDet;
-import com.fuj.enjoytv.utils.Constant;
+import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.utils.JsonUtils;
-import com.fuj.enjoytv.utils.LogUtils;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class TVDetFragment extends BaseFragment implements ITVDetContact.View {
             @Override
             public void onItemClick(ViewGroup parent, View view, TVDet tvDet, int position) {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(Constant.BUNDLE_TVDET, tvDet);
+                bundle.putSerializable(AppManager.BUNDLE_TVDET, tvDet);
                 showActivity(TVPlayActivity.class, bundle);
             }
 

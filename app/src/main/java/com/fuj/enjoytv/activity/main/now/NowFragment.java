@@ -19,9 +19,8 @@ import com.fuj.enjoytv.adapter.base.RVAdapter;
 import com.fuj.enjoytv.base.BaseFragment;
 import com.fuj.enjoytv.model.NowResult;
 import com.fuj.enjoytv.model.now.Now;
-import com.fuj.enjoytv.utils.Constant;
+import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.utils.JsonUtils;
-import com.fuj.enjoytv.utils.LogUtils;
 import com.fuj.enjoytv.video.IjkVideoView;
 import com.fuj.enjoytv.video.PlayStateParams;
 import com.google.gson.Gson;
@@ -61,7 +60,7 @@ public class NowFragment extends BaseFragment implements INowContract.View {
             @Override
             public void onItemClick(ViewGroup parent, View view, Now now, int position) {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(Constant.BUNDLE_NOW, now);
+                bundle.putSerializable(AppManager.BUNDLE_NOW, now);
                 showActivityResult(NowPlayActivity.class, 1, bundle);
             }
 
@@ -147,7 +146,7 @@ public class NowFragment extends BaseFragment implements INowContract.View {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode) {
-            case Constant.RESULT_CODE_PLAY_PATH:
+            case AppManager.RESULT_CODE_PLAY_PATH:
                 resultPlay(data);
                 break;
             default:
@@ -157,7 +156,7 @@ public class NowFragment extends BaseFragment implements INowContract.View {
     }
 
     private void resultPlay(Intent data) {
-        mIjkVideo.setVideoPath(data.getStringExtra(Constant.BUNDLE_PLAY_PATH));
+        mIjkVideo.setVideoPath(data.getStringExtra(AppManager.BUNDLE_PLAY_PATH));
         mIjkVideo.seekTo(0);
         mIjkVideo.setAspectRatio(PlayStateParams.fitparent);
         mIjkVideo.start();

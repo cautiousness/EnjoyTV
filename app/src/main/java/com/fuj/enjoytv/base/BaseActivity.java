@@ -1,7 +1,6 @@
 package com.fuj.enjoytv.base;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -23,7 +22,7 @@ import com.fuj.enjoytv.anim.AnimUtils;
 import com.fuj.enjoytv.tools.DialogHelper;
 import com.fuj.enjoytv.tools.cache.ConCache;
 import com.fuj.enjoytv.utils.ActivityUtils;
-import com.fuj.enjoytv.utils.Constant;
+import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.utils.DensityUtils;
 import com.fuj.enjoytv.utils.LogUtils;
 import com.fuj.enjoytv.utils.PreferenceUtils;
@@ -319,23 +318,23 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public String getPreString(String key) {
-        return PreferenceUtils.readString(this, Constant.CONFIG, key);
+        return PreferenceUtils.readString(this, AppManager.CONFIG, key);
     }
 
     public int getPreInt(String key) {
-        return PreferenceUtils.readInt(this, Constant.CONFIG, key);
+        return PreferenceUtils.readInt(this, AppManager.CONFIG, key);
     }
 
     public void setPreString(String key, String value) {
-        PreferenceUtils.write(this, Constant.CONFIG, key, value);
+        PreferenceUtils.write(this, AppManager.CONFIG, key, value);
     }
 
     public void setPreInt(String key, int value) {
-        PreferenceUtils.write(this, Constant.CONFIG, key, value);
+        PreferenceUtils.write(this, AppManager.CONFIG, key, value);
     }
 
     /*public String getServer() {
-        return getPreString(Constant.CONFIG_SERVER_ADDR);
+        return getPreString(AppManager.CONFIG_SERVER_ADDR);
     }*/
 
     public boolean getNetStatus() {
@@ -347,10 +346,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public String getUserName() {
-        return getPreString(Constant.BUNDLE_USER_NAME);
+        return getPreString(AppManager.BUNDLE_USER_NAME);
     }
 
     public void setUser(String name) {
-        setPreString(Constant.BUNDLE_USER_NAME, name);
+        setPreString(AppManager.BUNDLE_USER_NAME, name);
     }
 }

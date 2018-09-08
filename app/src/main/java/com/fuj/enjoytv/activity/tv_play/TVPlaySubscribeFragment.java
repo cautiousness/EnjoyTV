@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.fuj.enjoytv.R;
 import com.fuj.enjoytv.model.tv.Playlist;
-import com.fuj.enjoytv.utils.Constant;
+import com.fuj.enjoytv.utils.AppManager;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,7 @@ public class TVPlaySubscribeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPlaylist = (Playlist) getArguments().getSerializable(Constant.BUNDLE_PLAYLIST);
+        mPlaylist = (Playlist) getArguments().getSerializable(AppManager.BUNDLE_PLAYLIST);
         mAdapter = new TVPlayPlaylistAdapter(getContext(), new ArrayList<TVProgram>(), R.layout.item_subscribe_playlist);
     }
 

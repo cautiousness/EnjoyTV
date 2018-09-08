@@ -14,13 +14,11 @@ import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
-import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.fuj.enjoytv.R;
 import com.fuj.enjoytv.base.BaseFragment;
-import com.fuj.enjoytv.utils.Constant;
-import com.fuj.enjoytv.utils.LogUtils;
+import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.widget.map.MapControlButton;
 
 import java.lang.ref.WeakReference;
@@ -117,8 +115,8 @@ public class SimulationLocFragment extends BaseFragment implements ISimulationLo
 
     @Override
     public void hook(LatLng mSelfLatLng) {
-        setPreDouble(Constant.LOC_LAT, mSelfLatLng.latitude);
-        setPreDouble(Constant.LOC_LON, mSelfLatLng.longitude);
+        setPreDouble(AppManager.LOC_LAT, mSelfLatLng.latitude);
+        setPreDouble(AppManager.LOC_LON, mSelfLatLng.longitude);
     }
 
     @Override

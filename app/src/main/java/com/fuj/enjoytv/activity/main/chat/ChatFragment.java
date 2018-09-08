@@ -14,10 +14,8 @@ import com.fuj.enjoytv.adapter.ChatAdapter;
 import com.fuj.enjoytv.adapter.base.RVAdapter;
 import com.fuj.enjoytv.base.BaseFragment;
 import com.fuj.enjoytv.model.ChatResult;
-import com.fuj.enjoytv.model.MainResult;
 import com.fuj.enjoytv.model.chat.Chat;
-import com.fuj.enjoytv.model.CommResult;
-import com.fuj.enjoytv.utils.Constant;
+import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.utils.JsonUtils;
 import com.google.gson.Gson;
 
@@ -73,7 +71,7 @@ public class ChatFragment extends BaseFragment implements IChatContract.View {
             @Override
             public void onItemClick(ViewGroup parent, View view, Chat chat, int position) {
                 Bundle bundle = new Bundle();
-                bundle.putParcelable(Constant.BUNDLE_CHAT_DETAIL, chat);
+                bundle.putParcelable(AppManager.BUNDLE_CHAT_DETAIL, chat);
                 showActivity(ChatDtlActivity.class, bundle);
             }
 

@@ -10,9 +10,7 @@ import android.util.SparseArray;
 import com.fuj.enjoytv.utils.DensityUtils;
 
 /**
- * 初始化application工具
  * @author dell
- *
  */
 public class ConCache {
     public static final int GROUP_LOGO_WIDTH = 0x01;

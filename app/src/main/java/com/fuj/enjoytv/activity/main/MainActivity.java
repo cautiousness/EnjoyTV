@@ -19,7 +19,7 @@ import com.fuj.enjoytv.activity.main.user.UserFragment;
 import com.fuj.enjoytv.activity.main.user.UserPresenter;
 import com.fuj.enjoytv.base.BaseActivity;
 import com.fuj.enjoytv.base.BaseFragment;
-import com.fuj.enjoytv.utils.Constant;
+import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.widget.main.DragBubbleView;
 import com.fuj.enjoytv.widget.main.TabView;
 import com.yanzhenjie.permission.AndPermission;
@@ -186,10 +186,10 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch(resultCode){
-            case Constant.RESULT_CODE_PLAY_PATH:
+            case AppManager.RESULT_CODE_PLAY_PATH:
                 fragments[2].onActivityResult(requestCode, resultCode, data);
                 break;
-            case Constant.RESULT_CODE_LOGIN:
+            case AppManager.RESULT_CODE_LOGIN:
                 fragments[3].onActivityResult(requestCode, resultCode, data);
                 break;
             case -1:

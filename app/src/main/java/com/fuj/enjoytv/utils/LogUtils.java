@@ -15,7 +15,7 @@ import java.io.Writer;
 public class LogUtils {
     private static int LOGLEVEL = Log.INFO;
     private final static boolean LOGFLAG = true;
-    private final static String TAG = Constant.getAppName();
+    private final static String TAG = AppManager.getPackageName();
     private static String log;
     private static File mLogFile;
 
@@ -33,7 +33,7 @@ public class LogUtils {
 
     public void init(Context context) {
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
-        mLogFile = new File(Constant.logDir() + Constant.shortDate() + ".log");
+        mLogFile = new File(AppManager.logDir() + AppManager.shortDate() + ".log");
         //Thread.setDefaultUncaughtExceptionHandler(this);
     }
 
@@ -108,14 +108,14 @@ public class LogUtils {
 
     protected static String buildMessage(String msg) {
         StackTraceElement caller = new Throwable().fillInStackTrace().getStackTrace()[3];
-        log = "[" + Constant.getTimeShort() + "]"
+        log = "[" + AppManager.getTimeShort() + "]"
                 + caller.getClassName() + "." + caller.getMethodName() + "(): " + msg;
         return log;
     }
 
     public static void addRecordToLog(String message) {
-        File dir = new File(Constant.logDir());
-        if (Environment.MEDIA_MOUNTED.equals(Constant.STATE)) {
+        File dir = new File(AppManager.logDir());
+        if (Environment.MEDIA_MOUNTED.equals(AppManager.STATE)) {
             if(!dir.exists()) {
                 Log.d("create dir", ", result = " + dir.mkdirs());
             }

@@ -5,7 +5,7 @@ import android.support.multidex.MultiDexApplication;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.fuj.enjoytv.activity.main.MainActivity;
-import com.fuj.enjoytv.utils.Constant;
+import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.utils.LogUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.Bugly;
@@ -27,8 +27,7 @@ public class EnjoyApp extends MultiDexApplication {
             public void run() {
                 try {
                     Looper.prepare();
-                    Constant.init(EnjoyApp.this);
-                    LogUtils.getInstance().init(EnjoyApp.this);
+                    AppManager.init(EnjoyApp.this);
                     SDKInitializer.initialize(EnjoyApp.this);
                     Bugly.init(getApplicationContext(), "738a7261f6", false);
                     Beta.checkUpgrade(false, false);

@@ -19,7 +19,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.fuj.enjoytv.R;
 import com.fuj.enjoytv.base.BaseActivity;
-import com.fuj.enjoytv.utils.Constant;
+import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.widget.comm.GlideCircleTransform;
 
 import butterknife.Bind;
@@ -103,8 +103,8 @@ public class LoginActivity extends BaseActivity {
                             && "123".equals(pswET.getEditableText().toString())) {
                             showLoginAnim(R.string.login_success, "success.json");
                             Intent intent = new Intent();
-                            intent.putExtra(Constant.BUNDLE_USER_NAME, "畅享TV");
-                            setResult(Constant.RESULT_CODE_LOGIN, intent);
+                            intent.putExtra(AppManager.BUNDLE_USER_NAME, "畅享TV");
+                            setResult(AppManager.RESULT_CODE_LOGIN, intent);
                             finish();
                             return;
                         }
