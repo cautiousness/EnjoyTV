@@ -1,6 +1,7 @@
 package com.fuj.enjoytv.activity.main.user;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -61,6 +62,7 @@ public class UserFragment extends BaseFragment implements IUserContract.View, Vi
 
     private int themeId;
     private RequestOptions mOptions;
+    private Bitmap mBitmap;
     private IUserContract.Presenter mPresenter;
 
     @Override

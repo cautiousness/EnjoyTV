@@ -33,23 +33,6 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void initLottieView() {
-        mLottieView.setAlpha(0f);
-        mLottieView.animate().alpha(1f).setDuration(2500).setListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {}
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                mNameTV.setVisibility(View.VISIBLE);
-                mLottieView.animate().alpha(0f).setDuration(3000);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {}
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {}
-        });
         mLottieView.setAnimation("anim_splash.json");
         mLottieView.playAnimation();
         mLottieView.addAnimatorListener(new Animator.AnimatorListener() {
@@ -58,10 +41,7 @@ public class SplashActivity extends BaseActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.anim_alpha_enter, R.anim.anim_alpha_exit);
-                finish();
+                showMain();
             }
 
             @Override
@@ -70,5 +50,26 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void onAnimationRepeat(Animator animation) {}
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
+        if(mLottieView != null) {
+            mLottieView.cancelAnimation();
+            mLottieView = null;
+        }
+    }
+
+    public void clickSkip(View view) {
+        showMain();
+    }
+
+    private void showMain() {
+        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.anim_alpha_enter, R.anim.anim_alpha_exit);
+        finish();
     }
 }

@@ -39,6 +39,7 @@ public class GlideCircleTransform extends BitmapTransformation {
         paint.setAntiAlias(true);
         float r = size / 2f;
         canvas.drawCircle(r, r, r, paint);
+        squared.recycle();
         return result;
     }
 
