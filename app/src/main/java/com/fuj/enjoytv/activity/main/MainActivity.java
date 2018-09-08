@@ -3,11 +3,10 @@ package com.fuj.enjoytv.activity.main;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.TextView;
 
 import com.fuj.enjoytv.R;
 import com.fuj.enjoytv.activity.main.chat.ChatFragment;
@@ -25,11 +24,33 @@ import com.fuj.enjoytv.widget.main.DragBubbleView;
 import com.fuj.enjoytv.widget.main.TabView;
 import com.yanzhenjie.permission.AndPermission;
 
-public class MainActivity extends BaseActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
-    private TabView tv;
-    private TabView chat;
-    private TabView now;
-    private TabView user;
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+public class MainActivity extends BaseActivity {
+    @Bind(R.id.tab_tv)
+    TabView tv;
+
+    @Bind(R.id.tab_chat)
+    TabView chat;
+
+    @Bind(R.id.tab_now)
+    TabView now;
+
+    @Bind(R.id.tab_user)
+    TabView user;
+
+    @Bind(R.id.text_tv)
+    TextView text_tv;
+
+    @Bind(R.id.text_chat)
+    TextView text_chat;
+
+    @Bind(R.id.text_now)
+    TextView text_now;
+
+    @Bind(R.id.text_user)
+    TextView text_user;
 
     private Fragment[] fragments;
 
@@ -41,8 +62,8 @@ public class MainActivity extends BaseActivity implements ActivityCompat.OnReque
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //getWindow().setBackgroundDrawable(null);
 
+        ButterKnife.bind(this);
         initFragments();
         initTabView();
         initView();
@@ -62,17 +83,9 @@ public class MainActivity extends BaseActivity implements ActivityCompat.OnReque
     }
 
     public void initTabView() {
-        tv = findViewById(R.id.tab_tv);
+        resetIcon();
         tv.setIcon(R.mipmap.ic_tab_tv_selected, R.mipmap.ic_anchor_tv_selected);
-
-        chat = findViewById(R.id.tab_chat);
-        chat.setIcon(R.mipmap.ic_tab_chat_normal, R.mipmap.ic_anchor_chat_normal);
-
-        now = findViewById(R.id.tab_now);
-        now.setIcon(R.mipmap.ic_tab_now_normal, R.mipmap.ic_anchor_null);
-
-        user = findViewById(R.id.tab_user);
-        user.setIcon(R.mipmap.ic_tab_user_normal, R.mipmap.ic_anchor_user_normal);
+        text_tv.setTextColor(getResources().getColor(R.color.colorPrimary));
         selectTab(fragments[0], true);
     }
 
@@ -80,30 +93,38 @@ public class MainActivity extends BaseActivity implements ActivityCompat.OnReque
         addBubble();
     }
 
-    public void onItemClick(View view) {
+    public void onClick(View view) {
         anim_jelly(view);
         resetIcon();
         switch (view.getId()) {
             case R.id.tab_tv:
-                setIcon(tv, R.mipmap.ic_tab_tv_selected, R.mipmap.ic_anchor_tv_selected);
+            case R.id.text_tv:
                 selectTab(fragments[0], false);
+                setIcon(tv, R.mipmap.ic_tab_tv_selected, R.mipmap.ic_anchor_tv_selected);
+                text_tv.setTextColor(getResources().getColor(R.color.colorPrimary));
                 chat.moveLeft();
                 user.moveLeft();
                 break;
             case R.id.tab_chat:
-                setIcon(chat, R.mipmap.ic_tab_chat_selected, R.mipmap.ic_anchor_chat_selected);
+            case R.id.text_chat:
                 selectTab(fragments[1], true);
+                setIcon(chat, R.mipmap.ic_tab_chat_selected, R.mipmap.ic_anchor_chat_selected);
+                text_chat.setTextColor(getResources().getColor(R.color.colorPrimary));
                 user.moveLeft();
                 break;
             case R.id.tab_now:
-                setIcon(now, R.mipmap.ic_tab_now_selected, R.mipmap.ic_anchor_null);
+            case R.id.text_now:
                 selectTab(fragments[2], true);
+                setIcon(now, R.mipmap.ic_tab_now_selected, R.mipmap.ic_anchor_null);
+                text_now.setTextColor(getResources().getColor(R.color.colorPrimary));
                 chat.moveRight();
                 user.moveLeft();
                 break;
             case R.id.tab_user:
-                setIcon(user, R.mipmap.ic_tab_user_selected, R.mipmap.ic_anchor_user_selected);
+            case R.id.text_user:
                 selectTab(fragments[3], false);
+                setIcon(user, R.mipmap.ic_tab_user_selected, R.mipmap.ic_anchor_user_selected);
+                text_user.setTextColor(getResources().getColor(R.color.colorPrimary));
                 chat.moveRight();
                 break;
         }
@@ -114,17 +135,16 @@ public class MainActivity extends BaseActivity implements ActivityCompat.OnReque
         chat.setIcon(R.mipmap.ic_tab_chat_normal, R.mipmap.ic_anchor_chat_normal);
         now.setIcon(R.mipmap.ic_tab_now_normal, R.mipmap.ic_anchor_null);
         user.setIcon(R.mipmap.ic_tab_user_normal, R.mipmap.ic_anchor_user_normal);
+        text_tv.setTextColor(getResources().getColor(R.color.gray));
+        text_chat.setTextColor(getResources().getColor(R.color.gray));
+        text_now.setTextColor(getResources().getColor(R.color.gray));
+        text_user.setTextColor(getResources().getColor(R.color.gray));
         chat.reset();
         user.reset();
     }
 
     private void setIcon(final TabView view, final int bigIcon, final int smallIcon) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                view.setIcon(bigIcon, smallIcon);
-            }
-        }, 100);
+        view.setIcon(bigIcon, smallIcon);
     }
 
     private void selectTab(Fragment frag, boolean isShow) {
@@ -178,6 +198,12 @@ public class MainActivity extends BaseActivity implements ActivityCompat.OnReque
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 
     @Override

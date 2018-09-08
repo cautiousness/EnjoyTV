@@ -132,8 +132,7 @@ public class TVFragment extends BaseFragment implements ITVContract.View {
 
     private void initViewPager() {
         //mViewPager.setPageMargin(50);
-        mViewPagerIndicator = new ViewPagerIndicator(mViewPager,
-            getContext(), linearLayout, loopTV, mLoopAdapter.getList());
+        mViewPagerIndicator = new ViewPagerIndicator(mViewPager, getContext(), linearLayout, loopTV, mLoopAdapter.getList());
         mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(mLoopAdapter);
         mViewPager.setPageTransformer(true, new ScaleInTransformer());
@@ -198,5 +197,6 @@ public class TVFragment extends BaseFragment implements ITVContract.View {
     public void onDestroy() {
         super.onDestroy();
         mViewPagerIndicator.onDestroy();
+        ButterKnife.unbind(this);
     }
 }

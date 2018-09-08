@@ -15,6 +15,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="toolbar_style" parent="Base.Widget.AppCompat.Toolbar">
+        <item name="android:minHeight">@dimen/toolbar_minHeight</item>
+    </style>
+
     <!-- 加载动画dialog -->
     <style name="loading_dialog" parent="android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>

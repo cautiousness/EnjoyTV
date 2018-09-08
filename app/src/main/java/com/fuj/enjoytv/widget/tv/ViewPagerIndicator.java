@@ -10,35 +10,34 @@ import android.widget.TextView;
 import com.fuj.enjoytv.R;
 import com.fuj.enjoytv.model.main.Pic_title;
 import com.fuj.enjoytv.utils.DensityUtils;
-import com.fuj.enjoytv.utils.LogUtils;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by gang
  */
 public class ViewPagerIndicator implements ViewPager.OnPageChangeListener {
-    private int mIndex = 1;
     private int mSize;
+    private int mIndex = 1;
     private boolean mIsStop = false;
 
-    private static int DELAY = 5000;
-    private static final int RADIUS = 8;
+    private final static int DELAY = 5000;
+    private final static int RADIUS = 8;
 
     private List<ImageView> mDotViewLists = new ArrayList<>();
     private List<Pic_title> mList;
     private TextView mLoopTV;
     private ViewPager mViewPager;
-    private ViewPagerThread mViewPagerThread;
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     public ViewPagerIndicator(ViewPager viewPager, Context context, LinearLayout dotLayout, TextView textView, List<Pic_title> list) {
         this.mList = list;
         this.mViewPager = viewPager;
         this.mLoopTV = textView;
         this.mSize = mList.size() - 2;
-        mViewPagerThread = new ViewPagerThread(this);
 
         for (int i = 0; i < mSize; i++) {
             ImageView imageView = new ImageView(context);
@@ -76,6 +75,8 @@ public class ViewPagerIndicator implements ViewPager.OnPageChangeListener {
                 position = 1;
                 mIndex = position;
                 mViewPager.setCurrentItem(position, false);
+            } else {
+                mIndex = position;
             }
             mLoopTV.setText(mList.get(position).title);
         }
@@ -93,45 +94,34 @@ public class ViewPagerIndicator implements ViewPager.OnPageChangeListener {
     public void onPageScrollStateChanged(int state) {}
 
     private void aotuScroll() {
-        mViewPagerThread.start();
-    }
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                while (!mIsStop) {
+                    mViewPager.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mViewPager.setCurrentItem((++mIndex) % mList.size());
+                        }
+                    });
 
-    private static class ViewPagerThread extends Thread {
-        private static WeakReference<ViewPagerIndicator> mViewPagerIndicator;
-
-        public ViewPagerThread(ViewPagerIndicator viewPagerIndicator) {
-            mViewPagerIndicator = new WeakReference<>(viewPagerIndicator);
-        }
-
-        @Override
-        public void run() {
-            if(mViewPagerIndicator.get() == null) {
-                return;
-            }
-
-            while (!mViewPagerIndicator.get().mIsStop) {
-                mViewPagerIndicator.get().mViewPager.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mViewPagerIndicator.get().mViewPager.setCurrentItem((
-                            ++mViewPagerIndicator.get().mIndex)
-                            % mViewPagerIndicator.get().mList.size());
+                    try {
+                        synchronized (this) {
+                            wait(DELAY);
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                });
-
-                try {
-                    synchronized (this) {
-                        wait(DELAY);
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
             }
-        }
+        });
     }
 
     public void onDestroy() {
         mIsStop = true;
+        if(!executor.isShutdown()) {
+            executor.shutdownNow();
+        }
     }
 
     private void setSelectedDotBackground(ImageView imageView) {

@@ -88,8 +88,7 @@ public class TabView extends RelativeLayout {
      * 确定view以及拖动相关参数
      */
     private void setupView() {
-        mSmallRadius = 0.1f * Math.min(mView.getMeasuredWidth(),
-            mView.getMeasuredHeight()) * mRange; //根据view的宽高确定可拖动半径的大小
+        mSmallRadius = 0.1f * Math.min(mView.getMeasuredWidth(), mView.getMeasuredHeight()) * mRange; //根据view的宽高确定可拖动半径的大小
         mBigRadius = 1.5f * mSmallRadius;
         int padding = (int) mBigRadius; //设置imageview的padding，不然拖动时图片边缘部分会消失
         mBigIcon.setPadding(padding, padding, padding, padding);
