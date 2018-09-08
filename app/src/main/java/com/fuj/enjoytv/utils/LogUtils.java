@@ -11,19 +11,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class LogUtils {
     private static int LOGLEVEL = Log.INFO;
     private final static boolean LOGFLAG = true;
-
-    private final static String FILENAME = "log";
-    private final static String DIRNAME = "/enjoytv/";
-    private final static String TAG = "[ENJOYTV]";
+    private final static String TAG = Constant.getAppName();
     private static String log;
-    private static String state = Environment.getExternalStorageState();
+    private static File mLogFile;
 
     private Thread.UncaughtExceptionHandler mDefaultHandler;
 
@@ -39,6 +33,7 @@ public class LogUtils {
 
     public void init(Context context) {
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
+        mLogFile = new File(Constant.logDir() + Constant.shortDate() + ".log");
         //Thread.setDefaultUncaughtExceptionHandler(this);
     }
 
@@ -113,33 +108,26 @@ public class LogUtils {
 
     protected static String buildMessage(String msg) {
         StackTraceElement caller = new Throwable().fillInStackTrace().getStackTrace()[3];
-        log = "[" + SimpleDateFormat.getTimeInstance(DateFormat.DEFAULT)
-                .format(new Date(System.currentTimeMillis())) + "]"
+        log = "[" + Constant.getTimeShort() + "]"
                 + caller.getClassName() + "." + caller.getMethodName() + "(): " + msg;
         return log;
     }
 
     public static void addRecordToLog(String message) {
-        File dir = new File(Environment.getExternalStorageDirectory() + DIRNAME);
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
+        File dir = new File(Constant.logDir());
+        if (Environment.MEDIA_MOUNTED.equals(Constant.STATE)) {
             if(!dir.exists()) {
-                Log.d("Dir created ", ", result = " + dir.mkdirs());
+                Log.d("create dir", ", result = " + dir.mkdirs());
             }
-            File logFile = new File(Environment.getExternalStorageDirectory() + DIRNAME + FILENAME + ".txt");
-
-            if(logFile.length() > 5000000) {
-                Log.d("File delete ", "result = " + logFile.delete());
-            }
-
-            if (!logFile.exists())  {
+            if (!mLogFile.exists())  {
                 try  {
-                    Log.d("File created ", "result = " + logFile.createNewFile());
+                    Log.d("create file", "result = " + mLogFile.createNewFile());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
             try {
-                BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true));
+                BufferedWriter buf = new BufferedWriter(new FileWriter(mLogFile, true));
                 buf.write(message + "\r\n");
                 buf.newLine();
                 buf.flush();

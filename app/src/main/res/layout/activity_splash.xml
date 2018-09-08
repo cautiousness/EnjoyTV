@@ -13,7 +13,8 @@
         android:gravity="center"
         android:background="@drawable/bg_splash_skip"
         android:layout_margin="35dp"
-        android:onClick="clickSkip"/>
+        android:onClick="clickSkip"
+        android:textSize="12sp"/>
     <TextView
         android:id="@+id/splash_name"
         android:layout_width="wrap_content"

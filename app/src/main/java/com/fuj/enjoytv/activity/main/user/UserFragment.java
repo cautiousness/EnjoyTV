@@ -28,6 +28,11 @@ import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -203,13 +208,90 @@ public class UserFragment extends BaseFragment implements IUserContract.View, Vi
                 break;
             case -1:
                 LocalMedia media = PictureSelector.obtainMultipleResult(data).get(0);
+                mBitmap = BitmapFactory.decodeFile(converPath(media.getPath(), avatarIV.getWidth(), avatarIV.getHeight()));
                 Glide.with(getContext())
-                .load(BitmapFactory.decodeFile(media.getPath()))
+                .load(mBitmap)
                 .apply(mOptions)
                 .into(avatarIV);
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(mBitmap != null) {
+            mBitmap.recycle();
+            mBitmap = null;
+        }
+    }
+
+    public String converPath(String path, int width, int high) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        BitmapFactory.Options newOpts = new BitmapFactory.Options();
+        newOpts.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(path, newOpts);// 打开空图片获取分辨率
+        newOpts.inSampleSize = calculateInSampleSize(newOpts, width, high);// 设置缩放倍数
+        newOpts.inJustDecodeBounds = false;
+        try {
+            Bitmap bitmap1 = BitmapFactory.decodeFile(path, newOpts);
+            bitmap1.compress(Bitmap.CompressFormat.JPEG, 80, baos);
+        } catch (OutOfMemoryError e) {
+            newOpts.inSampleSize = newOpts.inSampleSize + 2;
+            Bitmap bitmap1 = BitmapFactory.decodeFile(path, newOpts);
+            bitmap1.compress(Bitmap.CompressFormat.JPEG, 80, baos);
+        }
+        Bitmap bitmap = null;
+        int options = 90;
+        while (baos.toByteArray().length / 1024 > 100) {
+            if (bitmap == null) {
+                bitmap = BitmapFactory.decodeByteArray(baos.toByteArray(), 0, baos.toByteArray().length);
+            } else {
+                baos.reset();
+            }
+            bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);
+            options -= 5;
+        }
+        FileOutputStream out = null;
+        File file = null;
+        try {
+            String[] name = path.split("/");
+            file = new File(Constant.imageDir() + name[name.length - 1]);
+            if (!file.getParentFile().exists())
+                file.getParentFile().mkdirs();
+            if (!file.exists())
+                file.createNewFile();
+            out = new FileOutputStream(file);
+            out.write(baos.toByteArray());
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            try {
+                out.close();
+                baos.reset();
+                baos = null;
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        return file.getAbsolutePath();
+    }
+
+    public int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+            if (width > height) {
+                inSampleSize = Math.round((float) height / (float) reqHeight);
+            } else {
+                inSampleSize = Math.round((float) width / (float) reqWidth);
+            }
+        }
+        return inSampleSize;
     }
 }

@@ -77,5 +77,10 @@ public class PreferenceUtils {
 	public static void clear(Context context, String SharedPreferencesName) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SharedPreferencesName, Context.MODE_PRIVATE);
         sharedPreferences.edit().clear().apply();
-    } 
+    }
+
+    public static String readConfigString(Context context, String key) {
+		SharedPreferences sharedPreferences = context.getSharedPreferences(Constant.CONFIG, Context.MODE_PRIVATE);
+		return sharedPreferences.getString(key, "");
+	}
 }
