@@ -8,6 +8,9 @@ import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.CycleInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -70,10 +73,16 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void clickLogin(View view) {
-        if (accountET.getEditableText().length() == 0 || pswET.getEditableText().length() == 0) {
-            showToast(R.string.toast_input_account);
+        if (accountET.getEditableText().length() == 0) {
+            setShakeAnimation(accountET);
             return;
         }
+
+        if(pswET.getEditableText().length() == 0) {
+            setShakeAnimation(pswET);
+            return;
+        }
+
         nameTV.setVisibility(View.GONE);
         mBtnLogin.setVisibility(View.GONE);
         inputAnimator();
@@ -95,6 +104,7 @@ public class LoginActivity extends BaseActivity {
             public void onAnimationEnd(Animator animation) {
                 lottieView.setVisibility(View.VISIBLE);
                 lottieView.setAnimation("anim_loading.json");
+                lottieView.loop(true);
                 lottieView.playAnimation();
                 mInputLayout.setVisibility(View.INVISIBLE);
                 new Handler().postDelayed(new Runnable() {
@@ -142,5 +152,17 @@ public class LoginActivity extends BaseActivity {
         animator2.setDuration(300);
         animator2.setInterpolator(new AccelerateDecelerateInterpolator());
         animator2.start();
+    }
+
+    public void setShakeAnimation(View view) {
+        view.startAnimation(shakeAnimation(5));
+    }
+
+    //CycleTimes动画重复的次数
+    public Animation shakeAnimation(int CycleTimes) {
+        Animation translateAnimation = new TranslateAnimation(0, 10, 0, 10);
+        translateAnimation.setInterpolator(new CycleInterpolator(CycleTimes));
+        translateAnimation.setDuration(1000);
+        return translateAnimation;
     }
 }

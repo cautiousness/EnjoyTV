@@ -13,11 +13,9 @@ import com.fuj.enjoytv.activity.tv_play.TVPlayActivity;
 import com.fuj.enjoytv.adapter.TVDetAdapter;
 import com.fuj.enjoytv.adapter.base.RVAdapter;
 import com.fuj.enjoytv.base.BaseFragment;
-import com.fuj.enjoytv.model.CommResult;
 import com.fuj.enjoytv.model.tv.TVDet;
 import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.utils.JsonUtils;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -78,7 +76,6 @@ public class TVDetFragment extends BaseFragment implements ITVDetContact.View {
 
     private void getData() {
         String content = JsonUtils.readJsonFile(getContext(), "tvdet");
-        CommResult result = new Gson().fromJson(content, CommResult.class);
-        mAdapter.updateRecyclerView(result.datas);
+        mAdapter.updateRecyclerView(JsonUtils.getObjectList(content, TVDet.class));
     }
 }

@@ -13,11 +13,9 @@ import com.fuj.enjoytv.activity.chat_dtl.ChatDtlActivity;
 import com.fuj.enjoytv.adapter.ChatAdapter;
 import com.fuj.enjoytv.adapter.base.RVAdapter;
 import com.fuj.enjoytv.base.BaseFragment;
-import com.fuj.enjoytv.model.CommResult;
 import com.fuj.enjoytv.model.chat.Chat;
 import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.utils.JsonUtils;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -84,7 +82,6 @@ public class ChatFragment extends BaseFragment implements IChatContract.View {
 
     private void getData() {
         String content = JsonUtils.readJsonFile(getContext(), "chatlist");
-        CommResult result = new Gson().fromJson(content, CommResult.class);
-        mChatAdapter.updateRecyclerView(result.datas);
+        mChatAdapter.updateRecyclerView(JsonUtils.getObjectList(content, Chat.class));
     }
 }

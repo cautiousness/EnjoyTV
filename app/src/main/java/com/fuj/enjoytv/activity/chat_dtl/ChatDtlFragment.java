@@ -10,12 +10,10 @@ import android.view.ViewGroup;
 import com.fuj.enjoytv.R;
 import com.fuj.enjoytv.adapter.MessageAdapter;
 import com.fuj.enjoytv.base.BaseFragment;
-import com.fuj.enjoytv.model.CommResult;
 import com.fuj.enjoytv.model.chat.Chat;
 import com.fuj.enjoytv.model.chat.Message;
 import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.utils.JsonUtils;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -75,7 +73,6 @@ public class ChatDtlFragment extends BaseFragment implements IChatDtlContact.Vie
 
     private void getData() {
         String content = JsonUtils.readJsonFile(getContext(), "msglist");
-        CommResult result = new Gson().fromJson(content, CommResult.class);
-        mMsgAdapter.updateRecyclerView(result.datas);
+        mMsgAdapter.updateRecyclerView(JsonUtils.getObjectList(content, Message.class));
     }
 }

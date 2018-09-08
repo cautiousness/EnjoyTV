@@ -2,10 +2,17 @@ package com.fuj.enjoytv.utils;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.ref.SoftReference;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by gang
@@ -24,9 +31,30 @@ public class JsonUtils {
             while ((content = bufferedReader.readLine()) != null) {
                 builder.append(content);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return builder.toString();
+    }
+
+
+    public static <T> List<T> getObjectList(String jsonString, Class<T> cls) {
+        List<T> list = new ArrayList<>();
+        try {
+            Gson gson = new Gson();
+            int start = jsonString.indexOf("[");
+            int end = jsonString.indexOf("]");
+            jsonString = jsonString.substring(start, end + 1);
+            //list = gson.fromJson(jsonString, new TypeToken<List<T>>(){}.getType());
+            JsonArray arry = new JsonParser().parse(jsonString).getAsJsonArray();
+            for (JsonElement jsonElement : arry) {
+                list.add(gson.fromJson(jsonElement, cls));
+            }
+        } catch (Exception e) {
+            LogUtils.e(" [error] " + e.getMessage());
+            e.printStackTrace();
+        }
+        return list;
+
     }
 }
