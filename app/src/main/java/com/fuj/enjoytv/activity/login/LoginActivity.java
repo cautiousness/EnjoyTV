@@ -1,10 +1,7 @@
 package com.fuj.enjoytv.activity.login;
 
 import android.animation.Animator;
-import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.PropertyValuesHolder;
-import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
@@ -23,7 +21,6 @@ import com.fuj.enjoytv.R;
 import com.fuj.enjoytv.base.BaseActivity;
 import com.fuj.enjoytv.utils.Constant;
 import com.fuj.enjoytv.widget.comm.GlideCircleTransform;
-import com.fuj.enjoytv.widget.comm.JellyInterpolator;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -33,8 +30,8 @@ public class LoginActivity extends BaseActivity {
     @Bind(R.id.main_btn_login)
     TextView mBtnLogin;
 
-    @Bind(R.id.layout_progress)
-    View progress;
+    @Bind(R.id.layout_lottie)
+    LottieAnimationView lottieView;
 
     @Bind(R.id.input_layout)
     View mInputLayout;
@@ -53,6 +50,9 @@ public class LoginActivity extends BaseActivity {
 
     @Bind(R.id.login_avatorIV)
     ImageView avatarIV;
+
+    @Bind(R.id.login_nameTV)
+    TextView nameTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,30 +74,17 @@ public class LoginActivity extends BaseActivity {
             showToast(R.string.toast_input_account);
             return;
         }
-        mName.setVisibility(View.INVISIBLE);
-        mPsw.setVisibility(View.INVISIBLE);
-        inputAnimator(mInputLayout, mBtnLogin.getMeasuredWidth(), mBtnLogin.getMeasuredHeight());
+        nameTV.setVisibility(View.GONE);
+        mBtnLogin.setVisibility(View.GONE);
+        inputAnimator();
     }
 
-    private void inputAnimator(final View view, float w, float h) {
-        ValueAnimator animator = ValueAnimator.ofFloat(0, w);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float value = (Float) animation.getAnimatedValue();
-                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-                params.leftMargin = (int) value;
-                params.rightMargin = (int) value;
-                view.setLayoutParams(params);
-            }
-        });
-        AnimatorSet set = new AnimatorSet();
-        ObjectAnimator animator2 = ObjectAnimator.ofFloat(mInputLayout, "scaleX", 1f, 0.5f);
-        set.setDuration(500);
-        set.setInterpolator(new AccelerateDecelerateInterpolator());
-        set.playTogether(animator, animator2);
-        set.start();
-        set.addListener(new Animator.AnimatorListener() {
+    private void inputAnimator() {
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(mInputLayout, "scaleY", 1f, 0.7f);
+        animator2.setDuration(300);
+        animator2.setInterpolator(new AccelerateDecelerateInterpolator());
+        animator2.start();
+        animator2.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {}
 
@@ -106,8 +93,9 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                progress.setVisibility(View.VISIBLE);
-                progressAnimator(progress);
+                lottieView.setVisibility(View.VISIBLE);
+                lottieView.setAnimation("anim_loading.json");
+                lottieView.playAnimation();
                 mInputLayout.setVisibility(View.INVISIBLE);
                 new Handler().postDelayed(new Runnable() {
                     public void run() {
@@ -137,28 +125,21 @@ public class LoginActivity extends BaseActivity {
         overridePendingTransition(R.anim.anim_trans_y_enter, R.anim.anim_trans_y_exit);
     }
 
-    private void progressAnimator(final View view) {
-        PropertyValuesHolder animator = PropertyValuesHolder.ofFloat("scaleX", 0.5f, 1f);
-        PropertyValuesHolder animator2 = PropertyValuesHolder.ofFloat("scaleY", 0.5f, 1f);
-        ObjectAnimator animator3 = ObjectAnimator.ofPropertyValuesHolder(view, animator, animator2);
-        animator3.setDuration(1000);
-        animator3.setInterpolator(new JellyInterpolator());
-        animator3.start();
-    }
-
     private void recovery() {
-        progress.setVisibility(View.GONE);
+        lottieView.setVisibility(View.GONE);
         mInputLayout.setVisibility(View.VISIBLE);
         mName.setVisibility(View.VISIBLE);
         mPsw.setVisibility(View.VISIBLE);
+        nameTV.setVisibility(View.VISIBLE);
+        mBtnLogin.setVisibility(View.VISIBLE);
 
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mInputLayout.getLayoutParams();
         params.leftMargin = 0;
         params.rightMargin = 0;
         mInputLayout.setLayoutParams(params);
 
-        ObjectAnimator animator2 = ObjectAnimator.ofFloat(mInputLayout, "scaleX", 0.5f,1f );
-        animator2.setDuration(500);
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(mInputLayout, "scaleY", 0.7f,1f);
+        animator2.setDuration(300);
         animator2.setInterpolator(new AccelerateDecelerateInterpolator());
         animator2.start();
     }

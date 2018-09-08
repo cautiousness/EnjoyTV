@@ -5,6 +5,13 @@
     android:layout_height="match_parent"
     android:background="@mipmap/bg_splash">
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/splsh_skip"
+        android:textColor="@color/white"
+        android:layout_alignParentRight="true"
+        android:padding="15dp"/>
+    <TextView
         android:id="@+id/splash_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

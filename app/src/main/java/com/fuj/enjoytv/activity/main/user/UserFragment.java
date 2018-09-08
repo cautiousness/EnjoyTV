@@ -93,7 +93,7 @@ public class UserFragment extends BaseFragment implements IUserContract.View, Vi
 
     private void initView() {
         initUserInfo();
-        locIV.setAnimation("location_map_pin.json");
+        locIV.setAnimation("anim_loc.json");
         locIV.loop(true);
         videoIV.setAnimation("camera.json");
         videoIV.loop(true);

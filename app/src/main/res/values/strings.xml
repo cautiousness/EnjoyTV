@@ -19,6 +19,9 @@
     <!-- title -->
     <string name="title_chat">消息</string>
 
+    <!-- splash -->
+    <string name="splsh_skip">跳过</string>
+
     <!-- login -->
     <string name="login_login">登录</string>
     <string name="login_signup">注册</string>
