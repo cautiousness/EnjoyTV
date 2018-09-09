@@ -8,9 +8,6 @@ import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.CycleInterpolator;
-import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.fuj.enjoytv.R;
+import com.fuj.enjoytv.anim.AnimUtils;
 import com.fuj.enjoytv.base.BaseActivity;
 import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.widget.comm.GlideCircleTransform;
@@ -74,12 +72,12 @@ public class LoginActivity extends BaseActivity {
 
     public void clickLogin(View view) {
         if (accountET.getEditableText().length() == 0) {
-            setShakeAnimation(accountET);
+            AnimUtils.startAnim(accountET, AnimUtils.ANIM_SHAKE, 5);
             return;
         }
 
         if(pswET.getEditableText().length() == 0) {
-            setShakeAnimation(pswET);
+            AnimUtils.startAnim(pswET, AnimUtils.ANIM_SHAKE, 5);
             return;
         }
 
@@ -154,15 +152,5 @@ public class LoginActivity extends BaseActivity {
         animator2.start();
     }
 
-    public void setShakeAnimation(View view) {
-        view.startAnimation(shakeAnimation(5));
-    }
 
-    //CycleTimes动画重复的次数
-    public Animation shakeAnimation(int CycleTimes) {
-        Animation translateAnimation = new TranslateAnimation(0, 10, 0, 10);
-        translateAnimation.setInterpolator(new CycleInterpolator(CycleTimes));
-        translateAnimation.setDuration(1000);
-        return translateAnimation;
-    }
 }
