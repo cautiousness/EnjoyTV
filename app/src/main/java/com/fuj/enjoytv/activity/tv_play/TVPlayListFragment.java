@@ -10,10 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fuj.enjoytv.R;
-import com.fuj.enjoytv.model.CommResult;
 import com.fuj.enjoytv.model.tv.Playlist;
+import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.utils.JsonUtils;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +25,10 @@ public class TVPlayListFragment extends Fragment {
     private static final float MIN_ALPHA = 0.75f;
 
     private TabAdapter mTabAdapter;
+    private TVPlaySubscribeFragmentAdapter mFragmentAdapter;
     private VerticalViewPager mViewPager;
     private VerticalTabLayout mTablayout;
+    private List<TVPlaySubscribeFragment> fragments = new ArrayList<>();
 
     public static Fragment newInstance() {
         return new TVPlayListFragment();
@@ -37,6 +38,7 @@ public class TVPlayListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTabAdapter = new TabAdapter();
+        mFragmentAdapter = new TVPlaySubscribeFragmentAdapter(getFragmentManager(), fragments, new ArrayList<Playlist>());
         getData();
     }
 
@@ -62,7 +64,7 @@ public class TVPlayListFragment extends Fragment {
             @Override
             public void onPageScrollStateChanged(int state) {}
         });
-        mViewPager.setAdapter(new TVPlaySubscribeFragmentAdapter(getFragmentManager(), new ArrayList<Playlist>()));
+        mViewPager.setAdapter(mFragmentAdapter);
         mViewPager.setPageMargin(1);
         mViewPager.setPageMarginDrawable(new ColorDrawable(getResources().getColor(R.color.gray_light)));
         mViewPager.setPageTransformer(true, new ViewPager.PageTransformer() {
@@ -114,12 +116,21 @@ public class TVPlayListFragment extends Fragment {
 
         public void updateData(List<Playlist> list) {
             dataLists = list;
+            if(fragments.size() < 1) {
+                for (Playlist playlist : dataLists) {
+                    TVPlaySubscribeFragment fragment = new TVPlaySubscribeFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(AppManager.BUNDLE_PLAYLIST, playlist);
+                    fragment.setArguments(bundle);
+                    fragments.add(fragment);
+                }
+            }
+            mFragmentAdapter.updateData(dataLists);
         }
     }
 
     private void getData() {
         String content = JsonUtils.readJsonFile(getContext(), "playlist");
-        CommResult result = new Gson().fromJson(content, CommResult.class);
-        mTabAdapter.updateData(result.datas);
+        mTabAdapter.updateData(JsonUtils.getObjectList(content, Playlist.class));
     }
 }

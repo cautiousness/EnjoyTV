@@ -13,4 +13,9 @@ public class Playlist implements Serializable {
 
     public String day;
     public List<TVProgram> playlist;
+
+    @Override
+    public String toString() {
+        return "day " + day + ", " + playlist;
+    }
 }

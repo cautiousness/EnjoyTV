@@ -43,7 +43,7 @@ public class JsonUtils {
         try {
             Gson gson = new Gson();
             int start = jsonString.indexOf("[");
-            int end = jsonString.indexOf("]");
+            int end = jsonString.lastIndexOf("]");
             jsonString = jsonString.substring(start, end + 1);
             //list = gson.fromJson(jsonString, new TypeToken<List<T>>(){}.getType());
             JsonArray arry = new JsonParser().parse(jsonString).getAsJsonArray();
