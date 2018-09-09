@@ -264,7 +264,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void anim_jelly(View view) {
-        AnimUtils.anim_jelly(view);
+        AnimUtils.startAnim(view, AnimUtils.ANIM_JELLY, 0);
     }
 
     /**

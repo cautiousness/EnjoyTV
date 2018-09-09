@@ -22,7 +22,15 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.fuj.enjoytv.widget.comm.GlideCircleTransform;
 import com.fuj.enjoytv.widget.main.DragBubbleView;
+
+import java.lang.ref.SoftReference;
+
+import static com.baidu.mapapi.BMapManager.getContext;
 
 public class RVHolder extends RecyclerView.ViewHolder {
     private int mPosition;
@@ -30,11 +38,11 @@ public class RVHolder extends RecyclerView.ViewHolder {
 
     private SparseArray<View> mViews;
     private View mConvertView;
-    private Context mContext;
+    private SoftReference<Context> mContext;
 
     public RVHolder(Context context, View itemView, ViewGroup parent, int position) {
         super(itemView);
-        mContext = context;
+        mContext = new SoftReference<>(context);
         mConvertView = itemView;
         mPosition = position;
         mViews = new SparseArray<>();
@@ -144,7 +152,7 @@ public class RVHolder extends RecyclerView.ViewHolder {
 
     public RVHolder setTextColorRes(int viewId, int textColorRes) {
         TextView view = getView(viewId);
-        view.setTextColor(mContext.getResources().getColor(textColorRes));
+        view.setTextColor(mContext.get().getResources().getColor(textColorRes));
         return this;
     }
 
@@ -257,6 +265,28 @@ public class RVHolder extends RecyclerView.ViewHolder {
     public int updatePosition(int position) {
         mPosition = position;
         return mPosition;
+    }
+
+    public RVHolder setImageCircleByGlide(int viewId, int resId) {
+        RequestOptions options = new RequestOptions()
+            .centerCrop()
+            .transform(new GlideCircleTransform(getContext()))
+            .diskCacheStrategy(DiskCacheStrategy.ALL);
+        Glide.with(mContext.get())
+            .load(resId)
+            .apply(options)
+            .into((ImageView) getView(viewId));
+        return this;
+    }
+
+    public RVHolder setImageByGlide(int viewId, int resId) {
+        RequestOptions options = new RequestOptions()
+            .diskCacheStrategy(DiskCacheStrategy.ALL);
+        Glide.with(mContext.get())
+            .load(resId)
+            .apply(options)
+            .into((ImageView) getView(viewId));
+        return this;
     }
 
     public int getLayoutId() {
