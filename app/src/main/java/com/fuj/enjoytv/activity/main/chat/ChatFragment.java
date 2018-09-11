@@ -65,19 +65,6 @@ public class ChatFragment extends BaseFragment implements IChatContract.View {
         mTVRV.setLayoutManager(new LinearLayoutManager(getContext()));
         setMarginTop(mTVRV);
         mTVRV.setAdapter(mChatAdapter);
-        mChatAdapter.setOnItemClickListener(new RVAdapter.OnItemClickListener<Chat>() {
-            @Override
-            public void onItemClick(ViewGroup parent, View view, Chat chat, int position) {
-                Bundle bundle = new Bundle();
-                bundle.putParcelable(AppManager.BUNDLE_CHAT_DETAIL, chat);
-                showActivity(ChatDtlActivity.class, bundle);
-            }
-
-            @Override
-            public boolean onItemLongClick(ViewGroup parent, View view, Chat chat, int position) {
-                return false;
-            }
-        });
     }
 
     private void getData() {

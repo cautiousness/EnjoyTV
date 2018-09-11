@@ -1,23 +1,29 @@
 package com.fuj.enjoytv.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 
 import com.fuj.enjoytv.R;
+import com.fuj.enjoytv.activity.chat_dtl.ChatDtlActivity;
 import com.fuj.enjoytv.adapter.base.RVAdapter;
 import com.fuj.enjoytv.adapter.base.RVHolder;
+import com.fuj.enjoytv.listener.OnChatClickListener;
 import com.fuj.enjoytv.model.chat.Chat;
+import com.fuj.enjoytv.utils.AppManager;
 import com.fuj.enjoytv.widget.comm.SwipeItemLayout;
-
 import java.util.List;
 
 /**
  * Created by gang
  */
 public class ChatAdapter extends RVAdapter<Chat> {
+    private Context mContext;
 
     public ChatAdapter(Context context, List<Chat> datas, int layoutId) {
         super(context, datas, layoutId);
+        mContext = context;
     }
 
     @Override
@@ -31,9 +37,20 @@ public class ChatAdapter extends RVAdapter<Chat> {
         holder.setOnClickListener(R.id.swipe_del, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SwipeItemLayout.closeMenu();
+                SwipeItemLayout.getINSTANCE().closeMenu();
                 mDatas.remove(holder.getLayoutPosition());
                 notifyItemRemoved(holder.getLayoutPosition());
+            }
+        });
+
+        holder.setItemContentClickListener(R.id.swipe_layout, new OnChatClickListener() {
+            @Override
+            public void clickContent() {
+                Intent intent = new Intent(mContext, ChatDtlActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(AppManager.BUNDLE_CHAT_DETAIL, chat);
+                intent.putExtras(bundle);
+                mContext.startActivity(intent);
             }
         });
     }

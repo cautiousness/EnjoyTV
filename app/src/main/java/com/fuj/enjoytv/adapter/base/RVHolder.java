@@ -25,7 +25,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.fuj.enjoytv.listener.OnChatClickListener;
 import com.fuj.enjoytv.widget.comm.GlideCircleTransform;
+import com.fuj.enjoytv.widget.comm.SwipeItemLayout;
 import com.fuj.enjoytv.widget.main.DragBubbleView;
 
 import java.lang.ref.SoftReference;
@@ -95,6 +97,12 @@ public class RVHolder extends RecyclerView.ViewHolder {
     public RVHolder setText(int viewId, CharSequence text) {
         TextView tv = getView(viewId);
         tv.setText(text);
+        return this;
+    }
+
+    public RVHolder setItemContentClickListener(int viewId, OnChatClickListener listener) {
+        SwipeItemLayout itemLayout = getView(viewId);
+        itemLayout.setOnChatClickListener(listener);
         return this;
     }
 

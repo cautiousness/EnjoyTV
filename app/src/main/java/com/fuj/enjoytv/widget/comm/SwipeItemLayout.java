@@ -7,11 +7,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Scroller;
 
+import com.fuj.enjoytv.listener.OnChatClickListener;
+import com.fuj.enjoytv.utils.LogUtils;
+
 public class SwipeItemLayout extends ViewGroup {
     private int downX, moveX, moved;
     private boolean haveShowRight = false;
+
     private Scroller scroller = new Scroller(getContext());
+    private OnChatClickListener mListener;
+
     public static SwipeItemLayout INSTANCE;
+
+    public static SwipeItemLayout getINSTANCE() {
+        return INSTANCE;
+    }
 
     public SwipeItemLayout(Context context) {
         super(context);
@@ -46,7 +56,7 @@ public class SwipeItemLayout extends ViewGroup {
         haveShowRight = false;
     }
 
-    public static void closeMenu() {
+    public void closeMenu() {
         INSTANCE.closeMenus();
     }
 
@@ -90,7 +100,10 @@ public class SwipeItemLayout extends ViewGroup {
                 if (INSTANCE != null) {
                     closeMenu();
                 }
-                if (getScrollX() >= getChildAt(1).getMeasuredWidth() / 2) {
+
+                if(getScrollX() < 20) {
+                    mListener.clickContent();
+                } else if (getScrollX() >= getChildAt(1).getMeasuredWidth() / 2) {
                     haveShowRight = true;
                     INSTANCE = this;
                     smoothScrollTo(getChildAt(1).getMeasuredWidth(), 0);
@@ -131,4 +144,9 @@ public class SwipeItemLayout extends ViewGroup {
             }
         }
     }
+
+    public void setOnChatClickListener(OnChatClickListener listener) {
+        mListener = listener;
+    }
 }
+
